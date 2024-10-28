@@ -1,0 +1,6 @@
+.wall {
+    background-color: brown; /* Color de la pared */
+    position: absolute; /* Para que se posicionen correctamente en el juego */
+    z-index: 1; /* Para asegurarnos de que las paredes estén encima del fondo */
+  }
+  

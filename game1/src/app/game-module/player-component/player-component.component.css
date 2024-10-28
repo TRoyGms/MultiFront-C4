@@ -1,0 +1,8 @@
+/* player-component.component.css */
+.player {
+    width: 30px; /* ancho del jugador */
+    height: 30px; /* altura del jugador */
+    background-color: blue; /* color del jugador */
+    position: absolute; /* para que se pueda mover libremente */
+  }
+  
