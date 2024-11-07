@@ -1,5 +1,14 @@
 <!-- player-component.component.html -->
-<div class="player" 
-     [style.left.px]="x" 
-     [style.top.px]="y" 
-     [style.background-color]="playerColor"></div>
+<div
+  class="player"
+  [style.left.px]="x"
+  [style.top.px]="y"
+  [style.background-color]="playerColor"
+>
+  <img
+    [src]="playerIMG"
+    alt="Player Image"
+    class="player-image"
+    [style.transform]="facingLeft ? 'scaleX(-1)' : 'scaleX(1)'"
+  />
+</div>
