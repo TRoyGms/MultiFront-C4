@@ -1,10 +1,10 @@
 <div *ngFor="let wall of walls" 
-     class="wall" 
-     [ngStyle]="{ 
-       left: wall.ladox1 + 'px', 
-       top: wall.ladoy1 + 'px', 
-       width: (wall.ladox2 - wall.ladox1) + 'px', 
-       height: (wall.ladoy2 - wall.ladoy1) + 'px',
-       backgroundColor:wall.textura 
-     }">
+  class="wall" 
+  [ngStyle]="{ 
+    left: wall.ladox1 + 'px', 
+    top: wall.ladoy1 + 'px', 
+    width: (wall.ladox2 - wall.ladox1) + 'px', 
+    height: (wall.ladoy2 - wall.ladoy1) + 'px',
+    backgroundColor:wall.textura 
+  }">
 </div>
