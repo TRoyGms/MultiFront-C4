@@ -1,10 +1,10 @@
 /* player-component.component.css */
 .player {
   position: absolute;
-  width: 80px;
-  height: 160px;
+  width: 40px;
+  height: 80px;
     /* Ajusta la hitbox en caso de necesitar un desplazamiento */
-    margin-left: -5px; /* Desplaza la hitbox horizontalmente */
+    margin-left: -2px; /* Desplaza la hitbox horizontalmente */
     margin-top: -15px;  /* Desplaza la hitbox verticalmente */
 }
 

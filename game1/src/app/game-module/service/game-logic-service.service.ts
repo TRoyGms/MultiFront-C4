@@ -47,7 +47,7 @@ export class GameLogicServiceService {
       exit: { x1: 270, x2: 290, y1: 200, y2: 250, color: 'red' },
     },
     player: {
-      position: { x: 440, y: 300 },
+      position: { x: 460, y: 300 },
     },
   };
 
@@ -66,7 +66,7 @@ export class GameLogicServiceService {
 
     const wallsToCheck  =  this.walls; 
     return wallsToCheck.some(walls => (
-      x +20 >= walls.ladox1 && x < walls.ladox2 && y + 20 >= walls.ladoy1 && y < walls.ladoy2
+      x + 35 >= walls.ladox1 && x < walls.ladox2 && y + 60 >= walls.ladoy1 && y < walls.ladoy2
     ));
   }
 
