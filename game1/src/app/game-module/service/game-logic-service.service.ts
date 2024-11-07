@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IWall } from '../Interface/iwall';
+import { Pared } from '../Interface/pared';
 import { IBridge } from '../Interface/ibridge';
 
 @Injectable({
@@ -15,11 +15,11 @@ export class GameLogicServiceService {
   ];
 
   // Definir un arreglo de muros para la primera cámara
-  walls: IWall[] = [
-    { x1: 100, x2: 109, y1: 100, y2: 500, color: 'black' },    // Primer muro verticual
-    { x1: 891, x2: 900, y1: 100, y2: 500, color: 'black' },    // Segundo muro vertical
-    { x1: 100, x2: 900, y1: 100, y2: 109, color: 'black' },  // Primer muro horizontal
-    { x1: 100, x2: 900, y1: 500, y2: 509, color: 'black' },   // Segundo muro Horizontal
+  walls: Pared[] = [
+    { x1: 100, x2: 109, y1: 100, y2: 500, textura: 'black' },    // Primer muro verticual
+    { x1: 891, x2: 900, y1: 100, y2: 500, textura: 'black' },    // Segundo muro vertical
+    { x1: 100, x2: 900, y1: 100, y2: 109, textura: 'black' },  // Primer muro horizontal
+    { x1: 100, x2: 900, y1: 500, y2: 509, textura: 'black' },   // Segundo muro Horizontal
   ];
 
   // Definir la segunda cámara
