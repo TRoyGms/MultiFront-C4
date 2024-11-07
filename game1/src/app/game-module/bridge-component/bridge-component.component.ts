@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { GameLogicServiceService } from '../service/game-logic-service.service';
-import { IBridge } from '../Interface/ibridge';
+import { Puente } from '../Interface/puente';
 
 @Component({
   selector: 'app-bridge-component',
@@ -8,7 +8,7 @@ import { IBridge } from '../Interface/ibridge';
   styleUrls: ['./bridge-component.component.css']
 })
 export class BridgeComponentComponent {
-  @Input() bridge!: IBridge;
+  @Input() bridge!: Puente;
 
   @Input() bridgeEntry!: { x1: number; y1: number; x2: number; y2: number; color: string };
   @Input() bridgeExit!: { x1: number; y1: number; x2: number; y2: number; color: string };
