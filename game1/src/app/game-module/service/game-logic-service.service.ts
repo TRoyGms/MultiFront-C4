@@ -126,6 +126,7 @@ export class GameLogicServiceService {
       { x1: 30, x2: 40, y1: 10, y2: 30, color: 'black' },  // Primer muro
       { x1: 40, x2: 50, y1: 10, y2: 30, color: 'black' },   // Segundo muro
       { x1: 60, x2: 70, y1: 20, y2: 40, color: 'black' },    // Tercer muro
+      { x1: 60, x2: 70, y1: 20, y2: 40, color: 'black' }
     ],
     bridge: {
       entry: { x1: 110, x2: 130, y1: 200, y2: 250, color: 'black' },
