@@ -7,7 +7,7 @@ import { GameLogicServiceService } from '../service/game-logic-service.service';
   styleUrl: './wallcomponent.component.css'
 })
 export class WallcomponentComponent {
-  @Input() walls: { x1: number; x2: number; y1: number; y2: number; color: string }[];
+  @Input() walls: { ladox1: number; ladox2: number; ladoy1: number; ladoy2: number; textura: string }[];
 
   constructor(private gameLogic: GameLogicServiceService) {
     this.walls = this.gameLogic.walls; // Inicializa aquí
