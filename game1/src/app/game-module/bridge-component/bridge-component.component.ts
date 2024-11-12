@@ -14,7 +14,7 @@ export class BridgeComponentComponent {
   @Input() bridgeExit!: { x1: number; y1: number; x2: number; y2: number; color: string };
 
   constructor(private gameLogic: GameLogicServiceService) {
-    // Inicializa aquí los puntos de entrada y salida del puente usando la lógica del servicio
+
     this.bridgeEntry = this.gameLogic.secondCameraComponents.bridge.entry;
     this.bridgeExit = this.gameLogic.secondCameraComponents.bridge.exit;
   }
