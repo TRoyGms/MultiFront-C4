@@ -5,6 +5,7 @@ import { BridgeComponentComponent } from './bridge-component/bridge-component.co
 import { CameraComponentComponent } from './camera-component/camera-component.component';
 import { GameComponentComponent } from './game-component/game-component.component';
 import { WallcomponentComponent } from './wallcomponent/wallcomponent.component';
+import { DisplayModule } from '../display/display.module';
 
 
 
@@ -18,7 +19,8 @@ import { WallcomponentComponent } from './wallcomponent/wallcomponent.component'
 
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DisplayModule
   ],exports:[
   ]
 })

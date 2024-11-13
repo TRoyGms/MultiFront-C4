@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-main-walls',
-  standalone: true,
-  imports: [],
+  selector: 'main-walls',
   templateUrl: './main-walls.component.html',
-  styleUrl: './main-walls.component.css'
+  
 })
 export class MainWallsComponent {
 

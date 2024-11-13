@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app.routes';
 import { GameModuleModule } from './game-module/game-module.module';
+import { DisplayModule } from './display/display.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { GameModuleModule } from './game-module/game-module.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GameModuleModule
+    GameModuleModule,
+    DisplayModule
 ],
   providers: [],
   bootstrap: [AppComponent]  
