@@ -7,8 +7,6 @@ import { GameComponentComponent } from './game-component/game-component.componen
 import { WallcomponentComponent } from './wallcomponent/wallcomponent.component';
 import { DisplayModule } from '../display/display.module';
 
-
-
 @NgModule({
   declarations: [
     PlayerComponentComponent,
@@ -16,6 +14,7 @@ import { DisplayModule } from '../display/display.module';
     CameraComponentComponent,
     GameComponentComponent,
     WallcomponentComponent,
+
 
   ],
   imports: [

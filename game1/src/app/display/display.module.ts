@@ -6,6 +6,7 @@ import { BridgesDisplayComponent } from './components/bridges-display/bridges-di
 import { GameBoardComponent } from './components/game-board/game-board.component';
 import { MainWallsComponent } from './components/main-walls/main-walls.component';
 import { TimeLeftDisplayComponent } from './components/time-left-display/time-left-display.component';
+import { MenuButtonComponent } from './components/menu-button/menu-button.component';
 
 
 
@@ -16,7 +17,8 @@ import { TimeLeftDisplayComponent } from './components/time-left-display/time-le
     BridgesDisplayComponent,
     GameBoardComponent,
     MainWallsComponent,
-    TimeLeftDisplayComponent
+    TimeLeftDisplayComponent,
+    MenuButtonComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { TimeLeftDisplayComponent } from './components/time-left-display/time-le
     BridgesDisplayComponent,
     GameBoardComponent,
     MainWallsComponent,
-    TimeLeftDisplayComponent
+    TimeLeftDisplayComponent,
+    MenuButtonComponent
   ]
 })
 export class DisplayModule { }
