@@ -17,10 +17,10 @@ export class GameLogicServiceService {
   // Definir un arreglo de muros para la primera cámara
 
   walls: Pared[] = [
-    { ladox1: 100, ladox2: 109, ladoy1: 100, ladoy2: 500, textura: 'black' },    // Primer muro verticual
-    { ladox1: 891, ladox2: 900, ladoy1: 100, ladoy2: 500, textura: 'black' },    // Segundo muro vertical
-    { ladox1: 100, ladox2: 900, ladoy1: 100, ladoy2: 109, textura: 'black' },  // Primer muro horizontal
-    { ladox1: 100, ladox2: 900, ladoy1: 500, ladoy2: 509, textura: 'black' },   // Segundo muro Horizontal
+    { ladox1: 50, ladox2: 59, ladoy1: 150, ladoy2: 550, textura: 'black' },    // Primer muro verticual
+    { ladox1: 800, ladox2: 809, ladoy1: 150, ladoy2: 550, textura: 'black' },    // Segundo muro vertical
+    { ladox1: 50, ladox2: 809, ladoy1: 150, ladoy2: 159, textura: 'black' },  // Primer muro horizontal
+    { ladox1: 50, ladox2: 809, ladoy1: 550, ladoy2: 559, textura: 'black' },   // Segundo muro Horizontal
   ];
 
   // Definir la segunda cámara

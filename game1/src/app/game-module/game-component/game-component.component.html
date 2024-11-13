@@ -1,20 +1,16 @@
-  <app-camera-component>
-    <app-player-component></app-player-component>
-    <app-wallcomponent></app-wallcomponent>
-    
-  </app-camera-component>
-  
-
-
-
-  <div id="mainScreen">
-
-    <div id="header">
-      <header-container></header-container>
-    </div>
-
-    <div class="relative border-4 border-green-300 inline-block min-w-fit min-h-fit overflow-hidden">
-
-    </div>
+<app-camera-component class="flex">
+  <header-container class="flex-shrink-0"></header-container>
+  <app-player-component class="flex-shrink-0"></app-player-component>
+  <div>
+    <app-wallcomponent class="flex-shrink-0"></app-wallcomponent>
   </div>
+  <div class="absolute top-[150px] right-[280px] w-[450px] h-[100%] ">
+    <bridges-display class="flex-shrink-0"></bridges-display>
+  </div>
+</app-camera-component>
+
+
+
+
+
  
