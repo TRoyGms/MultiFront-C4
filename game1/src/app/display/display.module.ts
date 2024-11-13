@@ -7,6 +7,7 @@ import { GameBoardComponent } from './components/game-board/game-board.component
 import { MainWallsComponent } from './components/main-walls/main-walls.component';
 import { TimeLeftDisplayComponent } from './components/time-left-display/time-left-display.component';
 import { MenuButtonComponent } from './components/menu-button/menu-button.component';
+import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
 
 
 
@@ -18,7 +19,8 @@ import { MenuButtonComponent } from './components/menu-button/menu-button.compon
     GameBoardComponent,
     MainWallsComponent,
     TimeLeftDisplayComponent,
-    MenuButtonComponent
+    MenuButtonComponent,
+    SettingsModalComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { MenuButtonComponent } from './components/menu-button/menu-button.compon
     GameBoardComponent,
     MainWallsComponent,
     TimeLeftDisplayComponent,
-    MenuButtonComponent
+    MenuButtonComponent,
+    SettingsModalComponent
   ]
 })
 export class DisplayModule { }
