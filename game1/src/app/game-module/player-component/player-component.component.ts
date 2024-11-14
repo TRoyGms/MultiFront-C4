@@ -9,8 +9,8 @@ import { GameLogicServiceService } from '../service/game-logic-service.service';
 
 export class PlayerComponentComponent implements OnInit {
   @Input() position!: { x: number; y: number };
-  x = 120;
-  y = 115;
+  x = 170;
+  y = 175;
   facingLeft = false; // Indica si el personaje está mirando a la izquierda
   playerColor = '';
   playerIMG = 'https://cdn.discordapp.com/attachments/1250621563074646130/1303930968578723874/PJ-SinBG.png?ex=672d8bd8&is=672c3a58&hm=7400e2852a922b5d09310f027235745b2e8575bdb8701de40e9151f5362c436c&';
