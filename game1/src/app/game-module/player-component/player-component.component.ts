@@ -13,7 +13,7 @@ export class PlayerComponentComponent implements OnInit {
   y = 175;
   facingLeft = false; // Indica si el personaje está mirando a la izquierda
   playerColor = '';
-  playerIMG = 'https://cdn.discordapp.com/attachments/1250621563074646130/1303930968578723874/PJ-SinBG.png?ex=672d8bd8&is=672c3a58&hm=7400e2852a922b5d09310f027235745b2e8575bdb8701de40e9151f5362c436c&';
+  playerIMG = 'PJ-SinBG.png';
 
   constructor(private gameLogic: GameLogicServiceService) {
     window.addEventListener('keydown', (event: KeyboardEvent) => this.move(event));
