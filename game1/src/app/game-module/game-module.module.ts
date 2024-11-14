@@ -6,6 +6,9 @@ import { CameraComponentComponent } from './camera-component/camera-component.co
 import { GameComponentComponent } from './game-component/game-component.component';
 import { WallcomponentComponent } from './wallcomponent/wallcomponent.component';
 import { DisplayModule } from '../display/display.module';
+import { UserModule } from '../user/user.module';
+import { RegisterComponent } from '../user/components/register/register.component';
+import { LoginComponent } from '../user/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,10 @@ import { DisplayModule } from '../display/display.module';
   ],
   imports: [
     CommonModule,
-    DisplayModule
+    DisplayModule,
+    UserModule
   ],exports:[
+   
   ]
 })
 export class GameModuleModule { }
