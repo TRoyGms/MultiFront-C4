@@ -33,6 +33,9 @@ export class GameLogicServiceService {
     angle: 0
   };
 
+
+
+  
   // Componentes de la segunda cámara
   secondCameraComponents = {
     walls: [
