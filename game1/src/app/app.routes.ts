@@ -8,11 +8,11 @@ import { LoginComponent } from './user/components/login/login.component';
 
 
 export const routes: Routes = [
-    {path:'game',component:GameComponentComponent},
     {path: 'registro', component:RegisterComponent},
     {path: 'login', component:LoginComponent},
-    {path:'', redirectTo: "/game",pathMatch:'full'},
-    {path:'**', redirectTo: '/game'}
+    {path:'game',component:GameComponentComponent},
+    {path:'', redirectTo: "/registro",pathMatch:'full'},
+    {path:'**', redirectTo: '/registro'}
 ];
 
 @NgModule({

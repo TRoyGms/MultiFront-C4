@@ -6,7 +6,7 @@
         <div class="w-5/6 items-center flex flex-col text-[30px]" >
           <label for="nombreusuario">Nombre de Usuario:</label>
           <input
-          class="border-2"
+          class="border-2 border-blue-400"
             id="nombreusuario"
             formControlName="nombreusuario"
             type="text"
@@ -16,7 +16,7 @@
         <div class="w-5/6 flex flex-col text-[30px] items-center text-center">
           <label for="contrasena">Contraseña:</label>
           <input
-          class="border-2"
+          class="border-2 border-blue-400"
             id="contrasena"
             formControlName="contrasena"
             type="password"
@@ -27,5 +27,9 @@
           <button class="border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
         </div>
       </form>
+    </div>
+    <div class="flex  border-2 bg-blue-300 p-2 rounded-3xl">
+      <h3 class="p-2 text-center" >¿Ya tienes cuenta?  </h3>
+      <h3 class="p-2 text-green-800 font-black" (click)="login()">  Inicia sesión</h3>
     </div>
 </div>
