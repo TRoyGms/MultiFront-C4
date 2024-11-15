@@ -4,6 +4,8 @@ import { GameComponentComponent } from './game-module/game-component/game-compon
 import { RegisterComponent } from './user/components/register/register.component';
 import { LoginComponent } from './user/components/login/login.component';
 import { LvlSelectorComponent } from './game-module/components/lvl-selector/lvl-selector.component';
+import { LvlCardComponent } from './game-module/components/lvl-card/lvl-card.component';
+import { ControlSelectorComponent } from './display/components/control-selector/control-selector.component';
 
 
 
@@ -14,7 +16,10 @@ export const routes: Routes = [
     {path: 'main', component: LvlSelectorComponent},
     {path:'game',component:GameComponentComponent},
     {path:'', redirectTo: "/registro",pathMatch:'full'},
-    {path:'**', redirectTo: '/registro'}
+    {path:'**', redirectTo: '/registro'},
+
+    {path:'lvlcard', component: LvlCardComponent},
+    {path: 'control', component:ControlSelectorComponent}
 ];
 
 @NgModule({
