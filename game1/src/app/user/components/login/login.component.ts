@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login-component',
@@ -12,7 +13,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
       nombreusuario: ['', Validators.required],
@@ -20,12 +22,16 @@ export class LoginComponent {
     });
   }
 
+  register():void{
+    this.router.navigate(["register"])
+  }
   onSubmit() {
     if (this.loginForm.valid) {
       const { nombreusuario, contrasena } = this.loginForm.value;
       this.userService.login(nombreusuario, contrasena).subscribe(
         response => {
           console.log('Usuario inició sesión con éxito:', response);
+          this.router.navigate(["/game"])
           // Aquí puedes agregar la lógica para redirigir al usuario o guardar el token en el almacenamiento local
         },
         error => {
