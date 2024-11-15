@@ -28,7 +28,7 @@
           <div class="w-5/6 items-center flex flex-col text-[25px]" >
             <label for="nombreusuario">Nombre de Usuario:</label>
             <input
-            class="border-2 border-blue-400"
+            class="border-2 border-blue-400 shadow-2xl"
               id="nombreusuario"
               formControlName="nombreusuario"
               type="text"
@@ -38,7 +38,7 @@
           <div class="w-5/6 flex flex-col text-[25px] items-center text-center">
             <label for="contrasena">Contraseña:</label>
             <input
-            class="border-2 border-blue-400"
+            class="border-2 border-blue-400 shadow-2xl"
               id="contrasena"
               formControlName="contrasena"
               type="password"
@@ -46,7 +46,7 @@
             />
           </div>
           <div class="w-full">
-            <button class="border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+            <button class="shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
           </div>
         </form>
       </div>

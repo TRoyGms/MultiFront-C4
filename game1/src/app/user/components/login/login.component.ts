@@ -22,6 +22,9 @@ export class LoginComponent {
     });
   }
 
+  register():void{
+    this.router.navigate(["register"])
+  }
   onSubmit() {
     if (this.loginForm.valid) {
       const { nombreusuario, contrasena } = this.loginForm.value;
