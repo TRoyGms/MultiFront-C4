@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'register-component',
-  templateUrl: './register.component.html',
+  templateUrl: './register.component.html', //AGREGAR VALIDACIONES PARA NO USAR "Ñ y simbolos del Español"
 })
 export class RegisterComponent {
   registerForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       nombreusuario: ['', Validators.required],
@@ -19,6 +22,10 @@ export class RegisterComponent {
     });
   }
 
+  login():void{
+    this.router.navigate(["login"])
+
+  }
   onSubmit() {
     if (this.registerForm.valid) {
       const { nombreusuario, contrasena } = this.registerForm.value;

@@ -1,25 +1,64 @@
-<div class="register-container">
-    <h2>Registro</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div>
+<div class="w-full h-screen flex justify-around bg-blue-200 text-center items-center ">
+
+    
+    <div class=" w-2/5 border-2 border-blue-300 bg-gray-100 p-4 flex flex-col items-center rounded-3xl shadow-2xl">
+      <b class="text-[45px] text-blue-900 ">
+        ¡Bienvenido a CodeBox!
+      </b>
+   
+      <div class="w-[300px] p-0 m-0 mb-10">
+        <img src="portada.png" alt="">
+      </div>
+    
+      <p class="text-[25px] ">
+        Si lo que buscas es aprender cosas basicas de la programación y quieres hacerlo jugando, tenemos una alternativa a los clasicos tutoriales y las páginas llenas de texto que solo te explican los conceptos.
+      </p>
+      <p class="text-[25px] mt-5">
+        Aquí aprenderás jugando, llevando trozos de código a su lugar correspondiente para lograr salir de los laboratorios.
+      </p>
+
+
+  </div>
+  <div>
+
+    
+    <div class="flex flex-col border-[8px] items-center w-[500px] h-[600px] justify-around  border-blue-400 rounded-3xl bg-gray-100  shadow-2xl">
+      <h2 class="text-[45px] ">Registro</h2>
+      <form class="  flex flex-col items-center justify-around h-5/6"
+      [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="w-5/6 items-center flex flex-col text-[25px]" >
         <label for="nombreusuario">Nombre de Usuario:</label>
         <input
-          id="nombreusuario"
-          formControlName="nombreusuario"
-          type="text"
-          required
+        class="border-2 border-blue-400 shadow-2xl"
+        id="nombreusuario"
+        formControlName="nombreusuario"
+        type="text"
+        required
         />
       </div>
-      <div>
+      <div class="w-5/6 flex flex-col text-[25px] items-center text-center">
         <label for="contrasena">Contraseña:</label>
         <input
-          id="contrasena"
-          formControlName="contrasena"
-          type="password"
-          required
+        class="border-2 border-blue-400 shadow-2xl"
+        id="contrasena"
+        formControlName="contrasena"
+        type="password"
+        required
         />
       </div>
-      <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+      <div class="w-full">
+        <button class="shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+      </div>
     </form>
   </div>
   
+  <div id="tienesCUenta?" class="flex justify-around border-2 bg-blue-300 p-2 rounded-3xl shadow-2xl mt-[30px]">
+    <h3 class="p-2 text-center" >¿Ya tienes cuenta?  </h3>
+    <h3 class="p-2 text-green-800 font-black" (click)="login()">  Inicia sesión</h3>
+  </div>
+  
+</div>
+</div>
+
+
+

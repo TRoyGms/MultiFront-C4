@@ -1,26 +1,48 @@
-<div class="login-container">
-    <h2>Iniciar Sesión</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label for="nombreusuario">Nombre de Usuario:</label>
-        <input
+<div class="w-full h-screen flex justify-around bg-blue-200 text-center items-center ">
+  
+  <div class="w-[300px] p-0 m-0">
+    <img src="portada.png" alt=""> 
+  </div>
+
+  <div >
+    <div class="flex flex-col border-[8px] items-center w-[500px] h-[600px] justify-around  border-blue-400 rounded-3xl bg-gray-100 mt-[-50px] shadow-2xl">
+      
+      <h2 class="text-[50px] ">Iniciar Sesión</h2>
+      
+      <form class="  flex flex-col items-center justify-around h-5/6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <div class="w-5/6 items-center flex flex-col text-[30px]">
+          
+          <label class="" for="nombreusuario">Nombre de Usuario:</label>
+          <input
+          class="border-2 shadow-2xl border-blue-400"
           id="nombreusuario"
           formControlName="nombreusuario"
           type="text"
           required
-        />
-      </div>
-      <div>
-        <label for="contrasena">Contraseña:</label>
-        <input
+          />
+        </div>
+
+        <div class="w-5/6 flex flex-col text-[30px] items-center text-center">
+          <label for="contrasena">Contraseña:</label>
+          <input
+          class="border-2 shadow-2xl border-blue-400"
           id="contrasena"
           formControlName="contrasena"
           type="password"
           required
-        />
-      </div>
-      <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
-    </form>
+          />
+        </div>
+        <div class="w-5/6">
+          
+          <button class=" shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+        </div>
+      </form>
+    </div>
+    <div id="tienesCUenta?" class="flex justify-around border-2 bg-blue-300 mt-4 p-2 rounded-3xl shadow-2xl">
+      <h3 class="p-2 text-center" >¿No tienes cuenta?  </h3>
+      <h3 class="p-2 text-green-800 font-black" (click)="register()">  Registrate</h3>
+    </div>
   </div>
+</div>
 
-  

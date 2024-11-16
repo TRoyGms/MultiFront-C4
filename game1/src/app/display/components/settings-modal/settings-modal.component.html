@@ -1,20 +1,34 @@
-<div class="w-[600px] h-[600px] flex flex-col justify-center align-baseline border-[5px] border-blue-800 bg-blue-600">
-    <div class="w-[500px] h-[150px] border-[2px] rounded-xl flex justify-center align-baseline">
-        <div id="logo"></div>
-        <div>
-            <h1 class="font-black text-5xl">REANUDAR</h1>
-        </div>
+<div
+  class="fixed inset-0 bg-white bg-opacity-100 flex items-center justify-center z-50"
+>
+
+<!-- Botón para cerrar -->
+    <div class="flex justify-end mt-6 w-[50%]">
+      <button class="bg-emerald-100 border-black border-[5px] hover:bg-gray-400 
+        text-gray-800 py-2 px-4 rounded w-full" (click)="closeSettingsModal()">REGRESAR
+      </button>
     </div>
-    <div class="w-[500px] h-[150px] border-[2px] rounded-xl flex justify-center align-baseline">
-        <div id="logo"></div>
-        <div>
-            <H1 class="font-black text-5xl">OPCIONES</H1>
-        </div>
+
+    <div class="w-[70%] h-[70%] flex flex-col justify-center items-center border-[5px] border-black bg-emerald-100 rounded-lg p-6">
+    <!-- Primer Contenedor: Música -->
+    <div class="w-[100%] h-[70%] border-[2px] rounded-xl flex justify-center items-center my-4">
+      <div>
+        <h1 class="font-black text-5xl text-center">MUSIC: ACTIVADA | DESACTIVADA</h1>
+      </div>
     </div>
-    <div class="w-[500px] h-[150px] border-[2px] rounded-xl flex justify-center align-baseline">
-        <div id="logo"></div>
-        <div>
-            <h1 class="font-black text-5xl">SALIR</h1>
-        </div>
+
+    <!-- Segundo Contenedor: FX Sounds -->
+    <div class="w-[100%] h-[70%] border-[2px] rounded-xl flex justify-center items-center my-4">      
+      <div>
+        <h1 class="font-black text-5xl text-center">FX SOUNDS: ACTIVADO | DESACTIVADO</h1>
+      </div>
     </div>
+
+    <!-- Tercer Contenedor: Controles -->
+    <div class="w-[100%] h-[70%] border-[2px] rounded-xl flex justify-center items-center my-4">
+      <div>
+        <h1 class="font-black text-5xl text-center">CONTROLES</h1>
+      </div>
+    </div>
+  </div>
 </div>
