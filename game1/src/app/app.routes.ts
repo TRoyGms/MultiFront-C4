@@ -13,7 +13,7 @@ import { ControlSelectorComponent } from './display/components/control-selector/
 export const routes: Routes = [
     {path: 'registro', component:RegisterComponent},
     {path: 'login', component:LoginComponent},
-    {path: 'main', component: LvlSelectorComponent},
+    {path: 'select_lvl', component: LvlSelectorComponent},
     {path:'game',component:GameComponentComponent},
     {path:'', redirectTo: "/registro",pathMatch:'full'},
     {path:'**', redirectTo: '/registro'},

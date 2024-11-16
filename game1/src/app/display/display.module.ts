@@ -8,6 +8,7 @@ import { MainWallsComponent } from './components/main-walls/main-walls.component
 import { TimeLeftDisplayComponent } from './components/time-left-display/time-left-display.component';
 import { MenuButtonComponent } from './components/menu-button/menu-button.component';
 import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
+import { ConfirmExitModalComponent } from './components/exit-modal/confirm-exit-modal.component';
 
 
 
@@ -20,7 +21,8 @@ import { SettingsModalComponent } from './components/settings-modal/settings-mod
     MainWallsComponent,
     TimeLeftDisplayComponent,
     MenuButtonComponent,
-    SettingsModalComponent
+    SettingsModalComponent,
+    ConfirmExitModalComponent
   ],
   imports: [
     CommonModule,
