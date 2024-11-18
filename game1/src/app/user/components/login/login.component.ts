@@ -23,7 +23,7 @@ export class LoginComponent {
   }
 
   register():void{
-    this.router.navigate(["register"])
+    this.router.navigate(["register"]) //AGREGAR VALIDACIONES PARA NO USAR "Ñ y simbolos del Español"
   }
   onSubmit() {
     if (this.loginForm.valid) {

@@ -6,7 +6,7 @@ import { Router} from '@angular/router';
 
 @Component({
   selector: 'register-component',
-  templateUrl: './register.component.html',
+  templateUrl: './register.component.html', //AGREGAR VALIDACIONES PARA NO USAR "Ñ y simbolos del Español"
 })
 export class RegisterComponent {
   registerForm: FormGroup;

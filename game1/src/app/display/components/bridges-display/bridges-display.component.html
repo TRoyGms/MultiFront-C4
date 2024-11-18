@@ -1,6 +1,9 @@
-<div class="fixed pl-100 border-[9px] border-red-900 h-[409px] w-[450px] bg-[rgb(166,207,213)] float-start flex left-[805px]">
-
-    <p class="text-center text-gray-600">Aqui van los puentes</p>
-
-</div>
+<div *ngFor="let bridge of bridges" class="justify-center items-center">
+    <!-- Contenedor del puente -->
+    <div [ngStyle]="getBridgeStyles(bridge)">
+      <p class="text-center text-black font-bold">Puente ID: {{ bridge._id }}</p>
+      <p class="text-center text-sm text-black">Nivel: {{ bridge.idnivel }}</p> 
+      <p class="text-center text-sm text-black">Esto ya esta usando la API y sus propiedades :D</p>
+    </div>
+  </div>
   
