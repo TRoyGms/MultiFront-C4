@@ -1,5 +1,9 @@
-<div class="fixed pl-100 border-[9px] border-red-900 h-[409px] w-[450px] bg-[rgb(114,114,114)] float-start flex left-[805px]">
-    <div class="mt-24 h-[180px] w-[550px] border-[2px] border-red-900 bg-[rgb(114,114,114)]">
-        <p class="w-[50%] mx-auto bg-[rgb(222,165,91)] mt-16 text-center text-white">Soy un puente puentoso :3</p> 
+<div *ngFor="let bridge of bridges" class="justify-center items-center">
+    <!-- Contenedor del puente -->
+    <div [ngStyle]="getBridgeStyles(bridge)">
+      <p class="text-center text-black font-bold">Puente ID: {{ bridge._id }}</p>
+      <p class="text-center text-sm text-black">Nivel: {{ bridge.idnivel }}</p> 
+      <p class="text-center text-sm text-black">Esto ya esta usando la API y sus propiedades :D</p>
     </div>
-</div>
+  </div>
+  
