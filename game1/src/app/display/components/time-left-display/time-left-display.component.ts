@@ -1,35 +1,30 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TimerService } from '../../services/timer.service';
 
 @Component({
   selector: 'time-left-display',
   templateUrl: './time-left-display.component.html',
 })
 export class TimeLeftDisplayComponent implements OnInit, OnDestroy {
-  timeLeft: number = 180; 
-  displayMinutes: number = 3;
-  displaySeconds: number = 0;
-  private timerInterval: any;
+  displayMinutes = 5;
+  displaySeconds = 30;
+
+  private subscription: any;
+
+  constructor(private timerService: TimerService) {}
 
   ngOnInit(): void {
-    this.startTimer();
+    this.subscription = this.timerService.timeLeft$.subscribe(time => {
+      this.displayMinutes = time.minutes;
+      this.displaySeconds = time.seconds;
+    });
+
+    this.timerService.startTimer();
   }
 
   ngOnDestroy(): void {
-    
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
-  }
-
-  private startTimer(): void {
-    this.timerInterval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-        this.displayMinutes = Math.floor(this.timeLeft / 60);
-        this.displaySeconds = this.timeLeft % 60;
-      } else {
-        clearInterval(this.timerInterval); 
-      }
-    }, 1000); 
   }
 }
