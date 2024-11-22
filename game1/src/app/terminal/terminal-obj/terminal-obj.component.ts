@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Terminal } from '../interface/terminal';
 
 @Component({
   selector: 'app-terminal-obj',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
 
 })
 export class TerminalObjComponent {
+
+  @Input() terminal!: Terminal
 
 }
