@@ -7,4 +7,5 @@ export interface Codebox {
     ladoy1: number
     ladoy2: number
     textura: string
+    codigo: string
 }
