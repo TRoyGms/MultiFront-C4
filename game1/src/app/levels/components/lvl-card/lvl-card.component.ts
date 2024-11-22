@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Level } from '../../interface/level';
 
 @Component({
   selector: 'lvl-card',
@@ -6,13 +7,15 @@ import { Component } from '@angular/core';
 
 })
 export class LvlCardComponent {
+  @Input() level!: Level
+  @Output() selectedLvl = new EventEmitter<number>()
 
   constructor(){
 
   }
 
-  toLvl(lvlid: number){
-    
+  toLvl():void {
+    this.selectedLvl.emit(this.level.idnivel)
   }
 
 }

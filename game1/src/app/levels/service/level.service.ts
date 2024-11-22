@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Level } from '../interface/level';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LevelService {
 
-  constructor() { }
+  private Url = ''
+
+  constructor(private http: HttpClient) { }
+
+  getLvls():Observable<Level[]>{
+    return this.http.get<Level[]>(this.Url)
+  }
 }
