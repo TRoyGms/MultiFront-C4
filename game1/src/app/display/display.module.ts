@@ -9,6 +9,7 @@ import { TimeLeftDisplayComponent } from './components/time-left-display/time-le
 import { MenuButtonComponent } from './components/menu-button/menu-button.component';
 import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
 import { ConfirmExitModalComponent } from './components/exit-modal/confirm-exit-modal.component';
+import { LevelsModule } from '../levels/levels.module';
 
 
 
@@ -25,8 +26,7 @@ import { ConfirmExitModalComponent } from './components/exit-modal/confirm-exit-
     ConfirmExitModalComponent
   ],
   imports: [
-    CommonModule,
- 
+    CommonModule, 
   ],
   exports:[
     HeaderContainerComponent,

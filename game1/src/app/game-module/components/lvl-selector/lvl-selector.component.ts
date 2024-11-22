@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Level } from '../../../levels/interface/level';
 import { LevelService } from '../../../levels/service/level.service';
+import { LvlCardComponent } from '../../../levels/components/lvl-card/lvl-card.component';
 
 @Component({
   selector: 'lvl-selector',
@@ -9,7 +10,7 @@ import { LevelService } from '../../../levels/service/level.service';
 
 })
 export class LvlSelectorComponent implements OnInit{
-  private levels: Level [] = []
+  public levels: Level [] = []
 
   constructor(private router: Router, private lvlService: LevelService){}
 
