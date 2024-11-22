@@ -4,7 +4,7 @@ import { GameComponentComponent } from './game-module/game-component/game-compon
 import { RegisterComponent } from './user/components/register/register.component';
 import { LoginComponent } from './user/components/login/login.component';
 import { LvlSelectorComponent } from './game-module/components/lvl-selector/lvl-selector.component';
-import { LvlCardComponent } from './game-module/components/lvl-card/lvl-card.component';
+import { LvlCardComponent } from './levels/components/lvl-card/lvl-card.component';
 import { ControlSelectorComponent } from './display/components/control-selector/control-selector.component';
 
 
@@ -15,6 +15,7 @@ export const routes: Routes = [
     {path: 'login', component:LoginComponent},
     {path: 'select_lvl', component: LvlSelectorComponent},
     {path:'game',component:GameComponentComponent},
+    {path : 'lvlcard', component: LvlCardComponent},
     {path:'', redirectTo: "/registro",pathMatch:'full'},
     {path:'**', redirectTo: '/registro'},
 

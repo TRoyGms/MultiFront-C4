@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class LvlCardComponent {
 
+  constructor(){
+
+  }
+
+  toLvl(lvlid: number){
+    
+  }
+
 }
