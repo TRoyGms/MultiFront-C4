@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimerService {
-  private timeLeft = 330; //(5 minutos 30 segundos)
+  private timeLeft = 330; // (5 minutos 30 segundos)
   private displayMinutes = Math.floor(this.timeLeft / 60);
   private displaySeconds = this.timeLeft % 60;
-  
+
   private timeLeftSubject = new BehaviorSubject<{ minutes: number; seconds: number }>({
     minutes: this.displayMinutes,
     seconds: this.displaySeconds,
   });
   timeLeft$ = this.timeLeftSubject.asObservable();
+
+  private timerFinishedSubject = new Subject<void>();
+  timerFinished$ = this.timerFinishedSubject.asObservable();
 
   private isPaused = false;
   private timerInterval: any;
@@ -31,6 +34,8 @@ export class TimerService {
         this.timeLeftSubject.next({ minutes: this.displayMinutes, seconds: this.displaySeconds });
       } else if (this.timeLeft <= 0) {
         clearInterval(this.timerInterval);
+        this.timerInterval = null;
+        this.timerFinishedSubject.next();
       }
     }, 1000);
   }
@@ -47,6 +52,13 @@ export class TimerService {
     clearInterval(this.timerInterval);
     this.timerInterval = null;
     this.timeLeft = 330;
+    this.displayMinutes = Math.floor(this.timeLeft / 60);
+    this.displaySeconds = this.timeLeft % 60;
     this.timeLeftSubject.next({ minutes: this.displayMinutes, seconds: this.displaySeconds });
+  }
+
+  clearTimer() {
+    clearInterval(this.timerInterval);
+    this.timerInterval = null;
   }
 }
