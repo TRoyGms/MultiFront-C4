@@ -1,4 +1,4 @@
-<div class="w-full h-screen flex justify-around bg-blue-200 text-center items-center ">
+<div class="select-none no-underline w-full h-screen flex justify-around bg-blue-200 text-center items-center ">
 
     
     <div class=" w-2/5 border-2 border-blue-300 bg-gray-100 p-4 flex flex-col items-center rounded-3xl shadow-2xl">
@@ -7,7 +7,7 @@
       </b>
    
       <div class="w-[300px] p-0 m-0 mb-10">
-        <img src="portada.png" alt="">
+        <img draggable="false" src="portada.png" alt="">
       </div>
     
       <p class="text-[25px] ">
@@ -26,7 +26,7 @@
       <h2 class="text-[45px] ">Registro</h2>
       <form class="  flex flex-col items-center justify-around h-5/6"
       [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="w-5/6 items-center flex flex-col text-[25px]" >
+      <div class="select-none no-underline w-5/6 items-center flex flex-col text-[25px]" >
         <label for="nombreusuario">Nombre de Usuario:</label>
         <input
         class="border-2 border-blue-400 shadow-2xl"
@@ -36,7 +36,7 @@
         required
         />
       </div>
-      <div class="w-5/6 flex flex-col text-[25px] items-center text-center">
+      <div class="select-none no-underline w-5/6 flex flex-col text-[25px] items-center text-center">
         <label for="contrasena">Contraseña:</label>
         <input
         class="border-2 border-blue-400 shadow-2xl"
@@ -47,14 +47,14 @@
         />
       </div>
       <div class="w-full">
-        <button class="shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+        <button class="cursor-pointer shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
       </div>
     </form>
   </div>
   
   <div id="tienesCUenta?" class="flex justify-around border-2 bg-blue-300 p-2 rounded-3xl shadow-2xl mt-[30px]">
-    <h3 class="p-2 text-center" >¿Ya tienes cuenta?  </h3>
-    <h3 class="p-2 text-green-800 font-black" (click)="login()">  Inicia sesión</h3>
+    <h3 class="p-2 text-center cursor-default select-none no-underline" >¿Ya tienes cuenta?  </h3>
+    <h3 class="p-2 text-green-800 font-black cursor-pointer" (click)="login()">  Inicia sesión</h3>
   </div>
   
 </div>
