@@ -1,11 +1,13 @@
 <!-- player-component.component.html -->
 <div
+  class="select-none no-underline"  
   class="player"
   [style.left.px]="x"
   [style.top.px]="y"
   [style.background-color]="playerColor"
 >
   <img
+    draggable="false"
     [src]="playerIMG"
     alt="Player Image"
     class="player-image"
