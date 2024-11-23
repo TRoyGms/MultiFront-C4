@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class TimerService {
-  private timeLeft = 330; // (5 minutos 30 segundos)
+  private timeLeft = 3; // (5 minutos 30 segundos)
   private displayMinutes = Math.floor(this.timeLeft / 60);
   private displaySeconds = this.timeLeft % 60;
 
@@ -51,7 +51,7 @@ export class TimerService {
   stopTimer() {
     clearInterval(this.timerInterval);
     this.timerInterval = null;
-    this.timeLeft = 330;
+    this.timeLeft = 3;
     this.displayMinutes = Math.floor(this.timeLeft / 60);
     this.displaySeconds = this.timeLeft % 60;
     this.timeLeftSubject.next({ minutes: this.displayMinutes, seconds: this.displaySeconds });

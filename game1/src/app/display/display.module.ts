@@ -14,7 +14,6 @@ import { GameOverAlertComponent } from './components/game-over-alert/game-over-a
 
 @NgModule({
   declarations: [
-    LevelsModule,
     HeaderContainerComponent,
     ActivatedTerminalIndicatorComponent,
     BridgesDisplayComponent,
