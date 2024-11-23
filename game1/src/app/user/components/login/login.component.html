@@ -1,13 +1,13 @@
-<div class="w-full h-screen flex justify-around bg-blue-200 text-center items-center ">
+<div class="select-none no-underline w-full h-screen flex justify-around bg-blue-200 text-center items-center ">
   
   <div class="w-[300px] p-0 m-0">
-    <img src="portada.png" alt=""> 
+    <img draggable="false" src="portada.png" alt=""> 
   </div>
 
   <div >
     <div class="flex flex-col border-[8px] items-center w-[500px] h-[600px] justify-around  border-blue-400 rounded-3xl bg-gray-100 mt-[-50px] shadow-2xl">
       
-      <h2 class="text-[50px] ">Iniciar Sesión</h2>
+      <h2 class="text-[50px]">Iniciar Sesión</h2>
       
       <form class="  flex flex-col items-center justify-around h-5/6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
@@ -35,13 +35,13 @@
         </div>
         <div class="w-5/6">
           
-          <button class=" shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+          <button class="cursor-pointer shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
         </div>
       </form>
     </div>
     <div id="tienesCUenta?" class="flex justify-around border-2 bg-blue-300 mt-4 p-2 rounded-3xl shadow-2xl">
       <h3 class="p-2 text-center" >¿No tienes cuenta?  </h3>
-      <h3 class="p-2 text-green-800 font-black" (click)="register()">  Registrate</h3>
+      <h3 class="p-2 text-green-800 font-black cursor-pointer" (click)="register()">  Registrate</h3>
     </div>
   </div>
 </div>

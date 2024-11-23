@@ -9,8 +9,8 @@ import { TimeLeftDisplayComponent } from './components/time-left-display/time-le
 import { MenuButtonComponent } from './components/menu-button/menu-button.component';
 import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
 import { ConfirmExitModalComponent } from './components/exit-modal/confirm-exit-modal.component';
-
-
+import { LevelsModule } from '../levels/levels.module';
+import { GameOverAlertComponent } from './components/game-over-alert/game-over-alert.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +22,11 @@ import { ConfirmExitModalComponent } from './components/exit-modal/confirm-exit-
     TimeLeftDisplayComponent,
     MenuButtonComponent,
     SettingsModalComponent,
+    GameOverAlertComponent,
     ConfirmExitModalComponent
   ],
   imports: [
-    CommonModule,
- 
+    CommonModule, 
   ],
   exports:[
     HeaderContainerComponent,

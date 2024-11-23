@@ -33,8 +33,12 @@
 
             <h2 class="w-full text-center pt-[35px] font-black text-white text-[60px]">Seleccionar nivel</h2>
 
-            <div class="w-5/6 h-5/6 border-[4px] border-blue-600 bg-blue-200 rounded-3xl mb-[40px]">
-                <h2 class="text-[70px]">aqui van a ir las cards de nivel</h2>
+            <div class="w-5/6 h-5/6 border-[4px] border-blue-600 bg-blue-200 rounded-3xl mb-[40px] flex flex-wrap gap-4">
+                <!-- <lvl-card
+                *ngFor="let level of levels"
+                [level]="level"
+                (selectedLvl)="navigateToLevel($event)"
+              ></lvl-card> -->
             </div>
         </div>
 
