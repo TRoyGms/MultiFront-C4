@@ -25,7 +25,8 @@ import { LevelsModule } from '../levels/levels.module';
     CommonModule,
     DisplayModule,
     UserModule,
-    LevelsModule
+    LevelsModule,
+    
   ],exports:[
    
   ]
