@@ -10,11 +10,11 @@ import { MenuButtonComponent } from './components/menu-button/menu-button.compon
 import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
 import { ConfirmExitModalComponent } from './components/exit-modal/confirm-exit-modal.component';
 import { LevelsModule } from '../levels/levels.module';
-
-
+import { GameOverAlertComponent } from './components/game-over-alert/game-over-alert.component';
 
 @NgModule({
   declarations: [
+    LevelsModule,
     HeaderContainerComponent,
     ActivatedTerminalIndicatorComponent,
     BridgesDisplayComponent,
@@ -23,6 +23,7 @@ import { LevelsModule } from '../levels/levels.module';
     TimeLeftDisplayComponent,
     MenuButtonComponent,
     SettingsModalComponent,
+    GameOverAlertComponent,
     ConfirmExitModalComponent
   ],
   imports: [
