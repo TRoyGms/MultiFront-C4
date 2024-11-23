@@ -10,6 +10,7 @@ import { ControlSelectorComponent } from './display/components/control-selector/
 
 
 export const routes: Routes = [
+    {path: 'control', component:ControlSelectorComponent},
     {path: 'registro', component:RegisterComponent},
     {path: 'login', component:LoginComponent},
     {path: 'select_lvl', component: LvlSelectorComponent},
@@ -17,7 +18,6 @@ export const routes: Routes = [
     {path:'', redirectTo: "/registro",pathMatch:'full'},
     {path:'**', redirectTo: '/registro'},
 
-    {path: 'control', component:ControlSelectorComponent}
 ];
 
 @NgModule({
