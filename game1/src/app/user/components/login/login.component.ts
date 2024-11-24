@@ -30,9 +30,24 @@ export class LoginComponent {
       const { nombreusuario, contrasena } = this.loginForm.value;
       this.userService.login(nombreusuario, contrasena).subscribe(
         response => {
-          console.log('Usuario inició sesión con éxito:', response);
-          this.router.navigate(["/select_lvl"])
-          // Aquí puedes agregar la lógica para redirigir al usuario o guardar el token en el almacenamiento local
+
+          const _idusuario = response.body.idusuario
+          console.log('Usuario inició sesión con éxito:', ", id: ", _idusuario, response);
+          
+          if(_idusuario){
+            localStorage.setItem("idusuario", _idusuario)
+          }
+
+          const _headers = response.headers
+          console.log('cabeceras: ',_headers)
+
+          const token = _headers.get('authorization')
+
+           if(token){
+            localStorage.setItem("token", token)
+          }     
+
+            this.router.navigate(["select_lvl"])          
         },
         error => {
           console.error('Error al iniciar sesión:', error);

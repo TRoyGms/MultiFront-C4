@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/core';
 import { GameLogicServiceService } from '../../../../services/game-logic-service.service';
-import { TimerService } from '../../services/timer.service';
+import { TimerService } from '../../../../services/timer.service';
 
 @Component({
   selector: 'app-game-over-alert',

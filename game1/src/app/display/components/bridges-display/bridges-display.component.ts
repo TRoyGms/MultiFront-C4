@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BridgeService } from '../../services/bridge.service';
+import { BridgeService } from '../../../../services/bridge.service';
 
 @Component({
   selector: 'bridges-display',
