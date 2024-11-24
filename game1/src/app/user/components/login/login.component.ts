@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../service/user.service';
+import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginComponent {
   }
 
   register():void{
-    this.router.navigate(["register"]) //AGREGAR VALIDACIONES PARA NO USAR "Ñ y simbolos del Español"
+    this.router.navigate(["register"]) 
   }
   onSubmit() {
     if (this.loginForm.valid) {
@@ -31,7 +31,7 @@ export class LoginComponent {
       this.userService.login(nombreusuario, contrasena).subscribe(
         response => {
           console.log('Usuario inició sesión con éxito:', response);
-          this.router.navigate(["/game"])
+          this.router.navigate(["/select_lvl"])
           // Aquí puedes agregar la lógica para redirigir al usuario o guardar el token en el almacenamiento local
         },
         error => {
