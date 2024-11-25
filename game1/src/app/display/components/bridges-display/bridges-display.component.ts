@@ -1,27 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { BridgeService } from '../../../../services/bridge.service';
+import { Component, Input } from '@angular/core';
+import { Puente } from '../../../game-module/Interface/puente';
 
 @Component({
   selector: 'bridges-display',
   templateUrl: './bridges-display.component.html',
 })
-export class BridgesDisplayComponent implements OnInit {
-  bridges: any[] = [];
+export class BridgesDisplayComponent {
+  @Input() bridges: Puente[] = []; // Ahora recibirá los datos como entrada
 
-  constructor(private bridgeService: BridgeService) {}
-
-  ngOnInit(): void {
-    this.bridgeService.getBridges().subscribe((data) => {
-      this.bridges = data;
-    });
-  }
-
-  // Genera los estilos dinámicamente para el puente
-  getBridgeStyles(bridge: any): any {
+  // Genera los estilos dinámicamente para los puentes
+  getBridgeStyles(bridge: Puente): any {
     return {
       width: `${bridge.ladox1}px`,
       height: `${bridge.ladoy1}px`,
-      backgroundColor: bridge.textura,
+      backgroundColor: bridge.idtextuta || 'gray', // Por si `textura` está vacío.
       border: '2px solid black',
     };
   }

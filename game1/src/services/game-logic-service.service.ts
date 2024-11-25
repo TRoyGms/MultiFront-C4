@@ -10,8 +10,8 @@ export class GameLogicServiceService {
   isGameOver = false;
 
   bridge: Puente[] = [
-    { ladox1: 110, ladox2: 130, ladoy1: 200, ladoy2: 250, idtextuta: 'black' },
-    { ladox1: 270, ladox2: 290, ladoy1: 200, ladoy2: 250, idtextuta: 'red' }
+    { id:"1", idnivel:1, ladox1: 110, ladox2: 130, ladoy1: 200, ladoy2: 250, idtextuta: 'black' },
+    { id:"1", idnivel:1, ladox1: 270, ladox2: 290, ladoy1: 200, ladoy2: 250, idtextuta: 'red' }
   ];
 
   walls: Pared[] = [
