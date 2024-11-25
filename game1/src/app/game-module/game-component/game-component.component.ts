@@ -5,7 +5,6 @@ import { TerminalService } from '../../../services/terminal.service';
 import { Codebox } from '../../codebox/interface/codebox';
 import { Terminal } from '../../terminal/interface/terminal';
 import { TerminalImgComponent } from '../../terminal/terminal-img/terminal-img.component';
-import { CodeboxImgComponent } from '../../codebox/codebox-img/codebox-img.component';
 
 @Component({
   selector: 'app-game-component',
@@ -37,7 +36,7 @@ export class GameComponentComponent implements OnInit {
       }
     )
 
-    this.codeboxS.getCodeboxesByLevel(idnivel).subscribe(
+    /*this.codeboxS.getCodeboxesByLevel(idnivel).subscribe(
       (response: Codebox[]) => {
         console.log("respuesta de las codeboxes ",response)
         this.codeboxes = response;
@@ -45,7 +44,7 @@ export class GameComponentComponent implements OnInit {
       (error) => {
         console.error('Error al obtener codeboxes:', error);
       }
-    );
+    );*/
   }
 
   @Input() position!: { x: number; y: number };

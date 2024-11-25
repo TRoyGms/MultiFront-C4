@@ -8,9 +8,8 @@
       [terminal]="terminal"></terminal-img>
   </div>
 
-  <div *ngIf="codeboxes.length > 0">
-    <codebox-img *ngFor="let codebox of codeboxes"
-    [codebox]="codebox"></codebox-img>
+  <div>
+    <app-codebox [codeBoxes]="gameLogic.codeBoxes"></app-codebox>
   </div>
 
   <div>
