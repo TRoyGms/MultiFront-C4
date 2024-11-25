@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -8,15 +8,22 @@ import { environment } from '../enviroments/enviroments';
 @Injectable({
   providedIn: 'root'
 })
-export class LevelService {
+export class LevelService implements OnInit{
 
   private Url = environment.API_URL
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  ngOnInit(): void {
+      this.getLvls()
+  }
+
   getLvls():Observable<Level[]>{
     const idusuario=localStorage.getItem("idusuario")
     const token= localStorage.getItem("token")
+
+    console.log("id: ",idusuario)
+    console.log("token: ",token)
 
     if(!idusuario){
       this.router.navigate(['login'])

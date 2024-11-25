@@ -8,7 +8,7 @@
                     <h1 class="text-[50px] pr-[20px] w-1/5">⚙️</h1>
                 </div>
                 <div class="w-5/6 text-left">
-                    <h2 class="text-[30px] text-left" (click)="toSettings()">Ajustes</h2>
+                    <h2 class="text-[30px] text-left text-white" (click)="toSettings()">Ajustes</h2>
                 </div>
 
             </div>
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="w-5/6 text-left">
-                    <h2 class="text-[30px] text-left" (click)="logOff()">Cerrar sesión</h2>
+                    <h2 class="text-[30px] text-left text-white" (click)="logOff()">Cerrar sesión</h2>
                 </div>
 
             </div>
@@ -33,12 +33,20 @@
 
             <h2 class="w-full text-center pt-[35px] font-black text-white text-[60px]">Seleccionar nivel</h2>
 
-            <div class="w-5/6 h-5/6 border-[4px] border-blue-600 bg-blue-200 rounded-3xl mb-[40px] flex flex-wrap gap-4">
-                <!-- <lvl-card
-                *ngFor="let level of levels"
-                [level]="level"
-                (selectedLvl)="navigateToLevel($event)"
-              ></lvl-card> -->
+            <div class="w-5/6 h-5/6 border-[4px] border-blue-600 bg-blue-200 rounded-3xl mb-[40px] flex flex-wrap justify-center items-center gap-4">
+                <div *ngIf="levels.length > 0" class="flex justify-between">
+                    
+                    <lvl-card
+                    *ngFor="let level of levels"
+                    [level] = "level"
+                    ></lvl-card>
+                    <!-- 
+                        (selectedLvl)="navigateToLvl(idnivel)"
+                        
+                    -->
+
+                </div>
+                
             </div>
         </div>
 
