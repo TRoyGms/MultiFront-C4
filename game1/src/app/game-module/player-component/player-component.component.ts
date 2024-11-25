@@ -1,30 +1,49 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GameLogicServiceService } from '../service/game-logic-service.service';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { GameLogicServiceService } from '../../../services/game-logic-service.service';
+import { TimerService } from '../../../services/timer.service';
 
 @Component({
   selector: 'app-player-component',
   templateUrl: './player-component.component.html',
-  styleUrls: ['./player-component.component.css'] // Cambia "styleUrl" a "styleUrls"
+  styleUrls: ['./player-component.component.css']
 })
-
-export class PlayerComponentComponent implements OnInit {
-  @Input() position!: { x: number; y: number };
+export class PlayerComponentComponent implements OnInit, OnDestroy {
   x = 170;
   y = 175;
-  facingLeft = false; // Indica si el personaje está mirando a la izquierda
-  playerColor = '';
+  facingLeft = false;
   playerIMG = 'PJ-SinBG.png';
+  playerColor = '';
+  private keyDownListener: any;
 
-  constructor(private gameLogic: GameLogicServiceService) {
-    window.addEventListener('keydown', (event: KeyboardEvent) => this.move(event));
-  }
+  constructor(
+    private gameLogic: GameLogicServiceService,
+    private timerService: TimerService
+  ) {}
 
   ngOnInit() {
-    this.x = this.position.x;
-    this.y = this.position.y;
+    // Añadir listener para los eventos de teclado
+    this.keyDownListener = window.addEventListener('keydown', (event: KeyboardEvent) => this.move(event));
+
+    // Subscribir a la notificación de Game Over
+    this.timerService.timerFinished$.subscribe(() => {
+      console.log("Game Over - Temporizador terminado");
+      this.gameLogic.setGameOverState(true);
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.keyDownListener) {
+      window.removeEventListener('keydown', this.keyDownListener);
+    }
   }
 
   move(event: KeyboardEvent) {
+    // Si el juego está en Game Over, no hacer nada
+    if (this.gameLogic.isGameOver) {
+      console.log("El juego terminó, no puedes mover el personaje");
+      return;
+    }
+
     const speed = 10;
     let newX = this.x;
     let newY = this.y;
@@ -38,19 +57,21 @@ export class PlayerComponentComponent implements OnInit {
         break;
       case 'ArrowLeft':
         newX -= speed;
-        this.facingLeft = true; // Mirar a la izquierda
+        this.facingLeft = true;
         break;
       case 'ArrowRight':
         newX += speed;
-        this.facingLeft = false; // Mirar a la derecha
+        this.facingLeft = false;
         break;
     }
 
+    // Verificar si no hay colisión con las paredes
     if (!this.gameLogic.checkWallCollision(newX, newY)) {
       this.x = newX;
       this.y = newY;
     }
 
+    // Verificar si el jugador necesita cambiar de cámara
     this.gameLogic.checkCameraTransition(this.x, this.y);
   }
 }

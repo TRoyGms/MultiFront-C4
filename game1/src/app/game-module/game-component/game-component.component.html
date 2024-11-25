@@ -1,7 +1,18 @@
-<app-camera-component class="flex">
+<app-camera-component class="flex select-none no-underline">
 
   <header-container class="flex-shrink-0"></header-container>
   <app-player-component class="flex-shrink-0"></app-player-component>
+  
+  <div *ngIf="terminales.length > 0">
+      <terminal-img *ngFor="let terminal of terminales"
+      [terminal]="terminal"></terminal-img>
+  </div>
+
+  <div *ngIf="codeboxes.length > 0">
+    <codebox-img *ngFor="let codebox of codeboxes"
+    [codebox]="codebox"></codebox-img>
+  </div>
+
   <div>
     <app-wallcomponent class="flex-shrink-0"></app-wallcomponent>
   </div>

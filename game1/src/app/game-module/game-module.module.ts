@@ -7,8 +7,10 @@ import { GameComponentComponent } from './game-component/game-component.componen
 import { WallcomponentComponent } from './wallcomponent/wallcomponent.component';
 import { DisplayModule } from '../display/display.module';
 import { UserModule } from '../user/user.module';
-import { RegisterComponent } from '../user/components/register/register.component';
-import { LoginComponent } from '../user/components/login/login.component';
+import { LevelsModule } from '../levels/levels.module';
+import { LvlSelectorComponent } from './components/lvl-selector/lvl-selector.component';
+import { TerminalModule } from '../terminal/terminal.module';
+import { CodeboxModule } from '../codebox/codebox.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,16 @@ import { LoginComponent } from '../user/components/login/login.component';
     CameraComponentComponent,
     GameComponentComponent,
     WallcomponentComponent,
-
-
+    LvlSelectorComponent
   ],
   imports: [
+    TerminalModule,
+    CodeboxModule,
     CommonModule,
     DisplayModule,
-    UserModule
+    UserModule,
+    LevelsModule,
+    
   ],exports:[
    
   ]

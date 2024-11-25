@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TerminalImgComponent } from './terminal-img/terminal-img.component';
+import { LvlCardComponent } from './components/lvl-card/lvl-card.component';
+
 
 
 @NgModule({
   declarations: [
-    TerminalImgComponent,
+    LvlCardComponent
   ],
   imports: [
     CommonModule
   ],
   exports:[
-    TerminalImgComponent,
+    LvlCardComponent
   ]
 })
-export class TerminalModule { }
+export class LevelsModule { }
