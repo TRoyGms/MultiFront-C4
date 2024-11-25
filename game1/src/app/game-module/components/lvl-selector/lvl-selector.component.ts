@@ -21,24 +21,25 @@ export class LvlSelectorComponent implements OnInit{
   private loadLvls():void {
     this.lvlService.getLvls().subscribe({
       next: (data) => {
-        this.levels = data,
+        this.levels = data.filter(level => level.desbloqueado === true),
       console.log("niveles en local: ",this.levels)},
 
       error: (_error) => (console.error("error al cargar niveles: ",_error))
     })
   }
 
-  navigateToLvl(idnivel: number): void{
-    //logica para cargar el nivel
-  }
-
+  
   logOff():void{
     localStorage.clear()
     this.router.navigate(["register"])
   }
-
+  
   toSettings():void{
     
   }
-
+  
 }
+
+/*   navigateToLvl(idnivel: number): void{
+    //logica para cargar el nivel
+  } */
