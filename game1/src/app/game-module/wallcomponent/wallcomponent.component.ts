@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GameLogicServiceService } from '../service/game-logic-service.service';
+import { GameLogicServiceService } from '../../../services/game-logic-service.service';
 
 @Component({
   selector: 'app-wallcomponent',

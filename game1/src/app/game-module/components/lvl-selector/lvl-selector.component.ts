@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Level } from '../../../levels/interface/level';
-import { LevelService } from '../../../levels/service/level.service';
+import { LevelService } from '../../../../services/level.service';
 import { LvlCardComponent } from '../../../levels/components/lvl-card/lvl-card.component';
 
 @Component({
@@ -20,12 +20,15 @@ export class LvlSelectorComponent implements OnInit{
 
   private loadLvls():void {
     this.lvlService.getLvls().subscribe({
-      next: (data) => (this.levels = data),
+      next: (data) => {
+        this.levels = data,
+      console.log("niveles en local: ",this.levels)},
+
       error: (_error) => (console.error("error al cargar niveles: ",_error))
     })
   }
 
-  navigateToLvl(levelid: number): void{
+  navigateToLvl(idnivel: number): void{
     //logica para cargar el nivel
   }
 
@@ -38,5 +41,4 @@ export class LvlSelectorComponent implements OnInit{
     
   }
 
-  
 }

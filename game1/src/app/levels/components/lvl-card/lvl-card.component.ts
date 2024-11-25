@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Level } from '../../interface/level';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lvl-card',
@@ -10,12 +11,16 @@ export class LvlCardComponent {
   @Input() level!: Level
   @Output() selectedLvl = new EventEmitter<number>()
 
-  constructor(){
-
+  constructor( private router:Router ){
+  
   }
 
   toLvl():void {
-    this.selectedLvl.emit(this.level.idnivel)
+    const nivel = this.level.idnivel.toString()
+    console.log(" idnivel: " ,nivel)
+    localStorage.setItem("idnivel", nivel)
+    this.router.navigate(['game'])
+    //this.selectedLvl.emit(this.level.idnivel)
   }
 
 }

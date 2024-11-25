@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Codebox } from '../interface/codebox';
-import { environment } from '../../../enviroments/enviroments';
+import { Observable} from 'rxjs';
+import { Terminal } from '../app/terminal/interface/terminal';
+import { environment } from '../enviroments/enviroments';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CodeboxService {
+export class TerminalService {
+
   private url = environment.API_URL
 
   constructor(private http: HttpClient) { }
 
-  getCodeboxesByLevel(levelId: number): Observable<Codebox[]> {
+  getTerminalsByLvl(levelid: number):Observable<Terminal[]>{
     const token= localStorage.getItem("token")
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `${token}` 
     });
-    return this.http.get<Codebox[]>(`${this.url}bloqueCodigo/nivel/${levelId}`, { headers });
+
+    return this.http.get<Terminal[]>(`${this.url}terminal/nivel/${levelid}`, { headers })
   }
 }

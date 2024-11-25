@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Pared } from '../Interface/pared';
-import { Puente } from '../Interface/puente';
+import { Pared } from '../app/game-module/Interface/pared';
+import { Puente } from '../app/game-module/Interface/puente';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { TimerService } from '../../services/timer.service';
+import { TimerService } from '../../../../services/timer.service';
 
 @Component({
   selector: 'time-left-display',
