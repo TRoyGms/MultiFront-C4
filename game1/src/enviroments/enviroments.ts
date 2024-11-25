@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  API_URL: 'http://54.165.200.101:8000/'
+  API_URL: 'http://codeboxapi.integrador.xyz:8000/'
 };
