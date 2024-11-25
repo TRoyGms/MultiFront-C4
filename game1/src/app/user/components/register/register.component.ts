@@ -25,13 +25,17 @@ export class RegisterComponent {
   login():void{
     this.router.navigate(["login"])
   }
-  
+
   onSubmit() {
     if (this.registerForm.valid) {
       const { nombreusuario, contrasena } = this.registerForm.value;
       this.userService.register(nombreusuario, contrasena).subscribe(
         response => {
           console.log('Usuario registrado con éxito:', response);
+          alert('Usuario registrado con éxito')
+          setTimeout(()=>{
+            this.login()
+          },2000)
         },
         error => {
           console.error('Error al registrar el usuario:', error);
