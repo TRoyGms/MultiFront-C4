@@ -20,12 +20,15 @@ export class LvlSelectorComponent implements OnInit{
 
   private loadLvls():void {
     this.lvlService.getLvls().subscribe({
-      next: (data) => (this.levels = data),
+      next: (data) => {
+        this.levels = data,
+      console.log("niveles en local: ",this.levels)},
+
       error: (_error) => (console.error("error al cargar niveles: ",_error))
     })
   }
 
-  navigateToLvl(levelid: number): void{
+  navigateToLvl(idnivel: number): void{
     //logica para cargar el nivel
   }
 
@@ -38,5 +41,4 @@ export class LvlSelectorComponent implements OnInit{
     
   }
 
-  
 }

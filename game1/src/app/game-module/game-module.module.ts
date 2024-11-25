@@ -8,6 +8,7 @@ import { WallcomponentComponent } from './wallcomponent/wallcomponent.component'
 import { DisplayModule } from '../display/display.module';
 import { UserModule } from '../user/user.module';
 import { LevelsModule } from '../levels/levels.module';
+import { LvlSelectorComponent } from './components/lvl-selector/lvl-selector.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { LevelsModule } from '../levels/levels.module';
     CameraComponentComponent,
     GameComponentComponent,
     WallcomponentComponent,
+    LvlSelectorComponent
   ],
   imports: [
     CommonModule,

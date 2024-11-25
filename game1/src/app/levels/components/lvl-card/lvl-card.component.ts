@@ -15,7 +15,10 @@ export class LvlCardComponent {
   }
 
   toLvl():void {
-    this.selectedLvl.emit(this.level.idnivel)
+    const nivel = this.level.idnivel.toString()
+    console.log(" idnivel: " ,nivel)
+    localStorage.setItem("idnivel", nivel)
+    //this.selectedLvl.emit(this.level.idnivel)
   }
 
 }
