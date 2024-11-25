@@ -37,6 +37,7 @@
             <div class="w-5/6 h-5/6 border-[4px] border-blue-600 bg-blue-200 rounded-3xl mb-[40px] flex flex-wrap justify-center items-center gap-4">
                 <div *ngIf="levels.length > 0" class="flex justify-between"> 
                     <lvl-card
+                    
                     *ngFor="let level of levels"
                     [level] = "level"
                     ></lvl-card>
