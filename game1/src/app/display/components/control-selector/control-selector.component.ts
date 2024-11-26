@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-control-selector',
+  selector: 'control-selector',
   templateUrl: './control-selector.component.html',
 
 })
