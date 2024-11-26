@@ -75,6 +75,7 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
     
     }
 
+    this.gameLogic.checkTerminalNear(newX,newY)
     this.gameLogic.checkCodeBoxNear(newX,newY)
 
     // Verificar si no hay colisión con las paredes

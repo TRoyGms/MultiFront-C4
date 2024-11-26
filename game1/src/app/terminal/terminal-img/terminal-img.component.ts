@@ -1,55 +1,59 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core'; // Añadido OnDestroy
+import { Subscription } from 'rxjs'; // Importar Subscription
 import { GameLogicServiceService } from '../../../services/game-logic-service.service'; // Importar el servicio
-import { Terminal } from '../interface/terminal'; // Ajusta la ruta según corresponda
 
 @Component({
   selector: 'app-terminal',
-   templateUrl: './terminal-img.component.html',
+  templateUrl: './terminal-img.component.html',
 })
+export class TerminalComponent implements OnInit, OnDestroy {
+ 
+  terminalImg = 'terminal.png'
+ 
+  @Input() terminales!: { 
+    _id: string;  
+    idnivel: number;
+    idpuente: number;
+    ladox1: number;
+    ladox2: number; 
+    ladoy1: number; 
+    ladoy2: number; 
+    textura: string; 
+    codigo: string; 
+  }[];
+  nearTerminalId: string | null = null;
+  nearTerminalMessage: string = '';
+  nearTerminalPosition: { x: number, y: number } | null = null;
 
-export class TerminalComponent implements OnInit {
-  @Input() terminales: Terminal[] = [];  // Declaramos la propiedad 'terminales' como Input
-  nearTerminalId: string | null = null;  // ID del terminal cercano
-  nearTerminalPosition: { x: number, y: number } | null = null;  // Posición del terminal cercano
-  nearTerminalMessage: string = '';  // Mensaje de proximidad al terminal
-  terminalImg = '/terminal.png';  // Ruta de la imagen del terminal
+  private terminalNearSubscription!: Subscription;
 
-  constructor(private gameLogicService: GameLogicServiceService) {}
+  constructor(private gameLogic: GameLogicServiceService) {}
 
   ngOnInit(): void {
-    // Cargar los terminales para el nivel actual, asumiendo nivel 1 por ahora
-    this.gameLogicService.loadTerminal(1);
+    this.gameLogic.loadTerminal(1);
 
-    // Suscripción al Subject de proximidad a terminal
-    this.gameLogicService.terminalNear$.subscribe((terminalId: string | null) => {
-      if (terminalId) {
-        this.nearTerminalId = terminalId;
-        // Aquí puedes buscar el terminal correspondiente para obtener su posición y mensaje
-        const terminal = this.terminales.find(t => t.id === terminalId);
+    this.terminalNearSubscription = this.gameLogic.terminalNear$.subscribe((id) => {
+      this.nearTerminalId = id;
+
+      if (id !== null) {
+        const terminal = this.terminales.find(term => term._id === id);
         if (terminal) {
-          this.nearTerminalPosition = { x: terminal.ladox1, y: terminal.ladoy1 };
-          this.nearTerminalMessage = '¡Estás cerca de un terminal! Haz clic para interactuar.';
+          this.nearTerminalMessage = terminal.codigo;
+          this.nearTerminalPosition = {
+            x: terminal.ladox1,
+            y: terminal.ladoy1,
+          };
         }
       } else {
-        this.nearTerminalId = null;
-        this.nearTerminalPosition = null;
         this.nearTerminalMessage = '';
+        this.nearTerminalPosition = null;
       }
     });
   }
 
-  // Método para activar el terminal (puedes personalizarlo según la lógica de activación)
-  activate(): void {
-    if (this.nearTerminalId) {
-      console.log('Activando terminal con ID:', this.nearTerminalId);
-      // Lógica para activar el terminal, como mostrar un mensaje o cambiar el estado
+  ngOnDestroy(): void {
+    if (this.terminalNearSubscription) {
+      this.terminalNearSubscription.unsubscribe();
     }
-  }
-
-  // Método para verificar la proximidad del jugador a los terminales
-  checkProximity(x: number, y: number): void {
-    const terminalId = this.gameLogicService.checkTerminalNear(x, y);
-    // La lógica para manejar la proximidad del jugador a los terminales ya está en el servicio
-    // Solo nos suscribimos a la notificación
   }
 }

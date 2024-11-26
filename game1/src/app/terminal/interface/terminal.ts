@@ -1,5 +1,5 @@
 export interface Terminal {
-    id:string
+    _id: string
     idnivel: number
     idpuente: number
     ladox1: number

@@ -74,6 +74,7 @@ export class GameLogicServiceService {
       }
     });
   }
+  
 
   // Check proximity to codeboxes
   checkCodeBoxNear(x: number, y: number): string | null {
@@ -100,9 +101,9 @@ export class GameLogicServiceService {
       y + 60 >= terminal.ladoy1 && y < terminal.ladoy2
     ));
     if (terminal) {
-      console.log("Terminal encontrado", terminal.id);
-      this.terminalNearSource.next(terminal.id);  // Notify about the terminal being near
-      return terminal.id;
+      console.log("Terminal encontrado", terminal._id);
+      this.terminalNearSource.next(terminal._id);  // Notify about the terminal being near
+      return terminal._id;
     } else {
       this.terminalNearSource.next(null);
       return null;
@@ -125,7 +126,7 @@ export class GameLogicServiceService {
   // Remove a terminal by ID
   removeTerminal(id: string): void {
     const originalLength = this.terminales.length;
-    this.terminales = this.terminales.filter(terminal => terminal.id !== id);
+    this.terminales = this.terminales.filter(terminal => terminal._id !== id);
     console.log("terminales", this.terminales);
 
     if (this.terminales.length < originalLength) {

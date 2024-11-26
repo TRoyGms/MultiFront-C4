@@ -21,7 +21,7 @@ export class CodeboxComponent implements OnInit, OnDestroy {
   constructor(private gameLogic: GameLogicServiceService) {}
 
   ngOnInit(): void {
-    this.gameLogic.loadCodebox(2);
+    this.gameLogic.loadCodebox(1);
     
     this.codeboxNearSubscription = this.gameLogic.codeboxNear$.subscribe((id) => {
       this.nearCodeboxId = id;
