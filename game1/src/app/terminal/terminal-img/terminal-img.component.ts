@@ -7,5 +7,6 @@ import { Terminal } from '../../terminal/interface/terminal';
 })
 
 export class TerminalImgComponent {
+  terminalImg = 'terminal.png'
   @Input() terminal!: Terminal;
 }

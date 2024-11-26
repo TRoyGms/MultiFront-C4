@@ -1,12 +1,15 @@
 <div *ngFor="let codebox of codeboxes" 
-  class="wall absolute" 
+  class="wall absolute"
   [ngStyle]="{ 
     left: codebox.ladox1 + 'px', 
     top: codebox.ladoy1 + 'px', 
     width: (codebox.ladox2 - codebox.ladox1) + 'px', 
     height: (codebox.ladoy2 - codebox.ladoy1) + 'px',
-    backgroundColor: codebox.textura
+    backgroundImage: 'url(/codebox.png)'
   }">
+  <img
+  [src]="codeboxImg"
+  > 
 </div>
 
 

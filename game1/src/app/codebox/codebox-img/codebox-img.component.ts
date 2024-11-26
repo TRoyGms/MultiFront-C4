@@ -8,6 +8,9 @@ import { CodeboxService } from '../service/codebox.service';
   templateUrl: './codebox-img.component.html'
 })
 export class CodeboxComponent implements OnInit, OnDestroy {
+
+  codeboxImg = 'codebox.png'
+
   @Input() codeboxes!: { _id: string; ladox1: number; ladox2: number; ladoy1: number; ladoy2: number; textura: string; codigo: string }[];
   nearCodeboxId: string | null = null; // Cambiado a string
   nearCodeboxMessage: string = '';
