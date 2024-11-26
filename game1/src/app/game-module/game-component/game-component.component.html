@@ -7,11 +7,7 @@
 
   <!-- Terminales -->
   <div *ngIf="terminales.length > 0" class="absolute top-0 left-0">
-    <terminal-img
-      *ngFor="let terminal of terminales"
-      [terminal]="terminal"
-      class="m-2"
-    ></terminal-img>
+    <app-terminal [terminales]="gameLogic.terminales"></app-terminal>
   </div>
 
   <!-- Codeboxes -->

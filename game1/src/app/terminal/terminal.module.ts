@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TerminalImgComponent } from './terminal-img/terminal-img.component';
+import { TerminalComponent } from './terminal-img/terminal-img.component';
 
 
 @NgModule({
   declarations: [
-    TerminalImgComponent,
+    TerminalComponent,
   ],
   imports: [
     CommonModule
   ],
   exports:[
-    TerminalImgComponent,
+    TerminalComponent,
   ]
 })
 export class TerminalModule { }
