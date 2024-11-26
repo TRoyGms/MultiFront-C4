@@ -5,7 +5,11 @@ import { TerminalService } from '../../../services/terminal.service';
 import { BridgeService } from '../../../services/bridge.service';
 import { Codebox } from '../../codebox/interface/codebox';
 import { Terminal } from '../../terminal/interface/terminal';
+
+import { TerminalImgComponent } from '../../terminal/terminal-img/terminal-img.component';
+
 import { Puente } from '../../game-module/Interface/puente';
+
 
 @Component({
   selector: 'app-game-component',
@@ -35,11 +39,20 @@ export class GameComponentComponent implements OnInit {
         console.log('Terminales cargadas:', response);
         this.terminales = response; // No necesitamos acceder a 'data' si la respuesta es directamente un arreglo
       },
+
+      (error) => {
+        console.error('Error al obtener terminales:', error);
+      }
+    )
+
+    /*this.codeboxS.getCodeboxesByLevel(idnivel).subscribe(
+
       (error) => console.error('Error al cargar terminales:', error)
     );
   
     // Cargar codeboxes
     this.codeboxS.getCodeboxesByLevel(this.nivel).subscribe(
+
       (response: Codebox[]) => {
         console.log('Codeboxes cargadas:', response);
         this.codeboxes = response; // Lo mismo, acceso directo a la respuesta
@@ -53,8 +66,15 @@ export class GameComponentComponent implements OnInit {
         console.log('Puentes cargados:', response);
         this.bridges = response; // Acceso directo a la respuesta sin 'data'
       },
+
+      (error) => {
+        console.error('Error al obtener codeboxes:', error);
+      }
+    );*/
+
       (error) => console.error('Error al cargar puentes:', error)
     );
+
   }
   
     

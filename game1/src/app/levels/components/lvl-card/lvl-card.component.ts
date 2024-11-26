@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LvlCardComponent {
   @Input() level!: Level
-  @Output() selectedLvl = new EventEmitter<number>()
+  //@Output() selectedLvl = new EventEmitter<number>()
 
   constructor( private router:Router ){
   
