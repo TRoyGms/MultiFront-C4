@@ -1,5 +1,5 @@
 export interface Codebox {
-    id: string
+    _id: string
     idnivel: number
     idpuente: number
     ladox1: number
