@@ -24,8 +24,8 @@ export class CodeboxComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.idnivel= parseInt(localStorage.getItem('idnivel') || '0', 10)
-
     this.gameLogic.loadCodebox(this.idnivel);
+
     
     this.codeboxNearSubscription = this.gameLogic.codeboxNear$.subscribe((id) => {
       this.nearCodeboxId = id;
