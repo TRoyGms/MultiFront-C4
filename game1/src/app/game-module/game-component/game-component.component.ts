@@ -21,6 +21,7 @@ export class GameComponentComponent implements OnInit {
   public walls: Pared[] = []
   public nivel: number = 0 
   public floorImg = 'lab-floor.jpg'
+  public fireImg = 'fire.jpg'
 
   constructor(
     public codeboxS: CodeboxService,
