@@ -20,6 +20,7 @@ export class GameComponentComponent implements OnInit {
   public bridges: Puente[] = [];
   public walls: Pared[] = []
   public nivel: number = 0 
+  public floorImg = 'lab-floor.jpg'
 
   constructor(
     public codeboxS: CodeboxService,
