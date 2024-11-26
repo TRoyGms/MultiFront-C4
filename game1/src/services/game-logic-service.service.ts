@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Pared } from '../app/game-module/Interface/pared';
 import { Puente } from '../app/game-module/Interface/puente';
-
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class GameLogicServiceService {
   currentCamera = 1;
   isGameOver = false;
+  private codeboxNearSource = new Subject<number | null>();
+  codeboxNear$ = this.codeboxNearSource.asObservable(); 
 
   bridge: Puente[] = [
     { ladox1: 110, ladox2: 130, ladoy1: 200, ladoy2: 250, idtextuta: 'black' },
@@ -29,6 +31,63 @@ export class GameLogicServiceService {
     zoom: 1,
     angle: 0
   };
+  codeBoxes = [
+    {
+      id: 1,  // Agregar el ID
+      idnivel: 1,  // Agregar el idnivel
+      idpuente: 1,  // Agregar el idpuente
+      ladox1: 350,  // Definir las dimensiones
+      ladoy1: 450,
+      ladox2: 400,  // Posición
+      ladoy2: 500,
+      textura: 'blue',  // Color o textura
+      codigo: 'someCode'  // Código (si es necesario)
+    },
+    {
+      id: 2,
+      idnivel: 2,
+      idpuente: 102,
+      ladox1: 550,
+      ladoy1:350,
+      ladox2: 600,
+      ladoy2: 400,
+      textura: 'green',
+      codigo: 'anotherCode'
+    },
+    {
+      id: 3,
+      idnivel: 2,
+      idpuente: 102,
+      ladox1: 250,
+      ladoy1:350,
+      ladox2: 300,
+      ladoy2: 400,
+      textura: 'red',
+      codigo: 'anotherCode'
+    },
+    {
+      id: 4,
+      idnivel: 2,
+      idpuente: 102,
+      ladox1: 550,
+      ladoy1:250,
+      ladox2: 600,
+      ladoy2: 300,
+      textura: 'yellow',
+      codigo: 'anotherCode'
+    },
+    {
+      id: 5,
+      idnivel: 2,
+      idpuente: 102,
+      ladox1: 350,
+      ladoy1:150,
+      ladox2: 400,
+      ladoy2: 200,
+      textura: 'black',
+      codigo: 'anotherCode'
+    }
+  ];
 
   secondCameraComponents = {
     walls: [
@@ -45,6 +104,42 @@ export class GameLogicServiceService {
       position: { x: 460, y: 300 },
     },
   };
+
+  removeCodeBox(id: number) {
+    const originalLength = this.codeBoxes.length;
+    // Filtra el array de codeBoxes, excluyendo el que tenga el id que coincide
+    this.codeBoxes = this.codeBoxes.filter(codebox => codebox.id !== id);
+
+    if (this.codeBoxes.length < originalLength) {
+        console.log(`CodeBox con ID ${id} ha sido eliminado.`);
+    } else {
+        console.log(`No se encontró el CodeBox con ID ${id}.`);
+    }
+}
+
+
+checkCodeBoxNear(x: number, y: number): number | null {
+  const codeboxToCheck = this.codeBoxes; // Array de CodeBoxes
+  const codebox = codeboxToCheck.find(codebox => (
+    x + 35 >= codebox.ladox1 && x < codebox.ladox2 &&
+    y + 60 >= codebox.ladoy1 && y < codebox.ladoy2
+  ));
+
+  if (codebox) {
+      console.log(`ID del CodeBox cercano: ${codebox.id}`);
+      this.codeboxNearSource.next(codebox.id); // Emitir el ID del CodeBox cercano
+      return codebox.id; // Retornar el ID del CodeBox encontrado
+  } else {
+      console.log('No hay CodeBox cercano.');
+      this.codeboxNearSource.next(null); // Emitir null si no hay CodeBox cercano
+      return null; // No se encontró ningún CodeBox
+  }
+}
+
+
+
+
+
 
   checkCameraTransition(x: number, y: number) {
     if (this.isAtBridgeEntry(x, y) || this.isAtSecondCameraArea(x, y)) {
