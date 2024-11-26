@@ -1,26 +1,40 @@
 <app-camera-component class="flex select-none no-underline">
-
+  <!-- Header Container -->
   <header-container class="flex-shrink-0"></header-container>
+
+  <!-- Player -->
   <app-player-component class="flex-shrink-0"></app-player-component>
-  
-  <div *ngIf="terminales.length > 0">
-      <terminal-img *ngFor="let terminal of terminales"
-      [terminal]="terminal"></terminal-img>
+
+  <!-- Terminales -->
+  <div *ngIf="terminales.length > 0" class="absolute top-0 left-0">
+    <terminal-img
+      *ngFor="let terminal of terminales"
+      [terminal]="terminal"
+      class="m-2"
+    ></terminal-img>
   </div>
+
+  <!-- Codeboxes -->
+  <div *ngIf="codeboxes.length > 0" class="absolute top-0 right-0">
+    <codebox-img
+      *ngFor="let codebox of codeboxes"
+      [codebox]="codebox"
+      class="m-2"
+    ></codebox-img>
+  </div>
+
 
   <div>
     <app-codebox [codeBoxes]="gameLogic.codeBoxes"></app-codebox>
+
+  <!-- Puentes -->
+  <div *ngIf="bridges.length > 0" class="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+    <bridges-display [bridges]="bridges" class="m-4"></bridges-display>
+
   </div>
 
+  <!-- Wall Component -->
   <div>
     <app-wallcomponent class="flex-shrink-0"></app-wallcomponent>
   </div>
-  <div class="absolute top-[150px] right-[625px] w-[450px] h-[100%] ">
-    <bridges-display></bridges-display>
-  </div>    
-  </app-camera-component> 
-
-
-
-
- 
+</app-camera-component>
