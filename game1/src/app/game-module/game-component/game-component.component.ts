@@ -3,9 +3,11 @@ import { GameLogicServiceService } from '../../../services/game-logic-service.se
 import { CodeboxService } from '../../codebox/service/codebox.service';
 import { TerminalService } from '../../../services/terminal.service';
 import { BridgeService } from '../../../services/bridge.service';
+import { WallsService } from '../../../services/walls.service';
 import { Codebox } from '../../codebox/interface/codebox';
 import { Terminal } from '../../terminal/interface/terminal';
 import { Puente } from '../../game-module/Interface/puente';
+import { Pared } from '../Interface/pared';
 
 @Component({
   selector: 'app-game-component',
@@ -16,18 +18,19 @@ export class GameComponentComponent implements OnInit {
   public codeboxes: Codebox[] = [];
   public terminales: Terminal[] = [];
   public bridges: Puente[] = [];
-  public nivel: number = 1; // Variable para mostrar el nivel
+  public walls: Pared[] = []
+  public nivel: number = 0 
 
   constructor(
     public codeboxS: CodeboxService,
     public terminalS: TerminalService,
     public bridgeS: BridgeService,
-    public gameLogic: GameLogicServiceService
+    public gameLogic: GameLogicServiceService,
+    public wallsServ: WallsService
   ) {}
 
   ngOnInit(): void {
-    const nivel = localStorage.getItem('idnivel');
-    this.nivel = nivel ? parseInt(nivel, 10) : 1;
+    this.nivel= parseInt(localStorage.getItem("idnivel") || "0", 10)
   
     // Cargar terminales
     this.terminalS.getTerminalsByLvl(this.nivel).subscribe(
@@ -38,6 +41,14 @@ export class GameComponentComponent implements OnInit {
       (error) => console.error('Error al cargar terminales:', error)
     );
   
+    //cargar paredes
+    this.wallsServ.getWalls().subscribe({
+      next:(data ) => {
+        console.log("paredes: ",data)
+        this.walls=data
+      }
+    })
+
     // Cargar codeboxes
     this.codeboxS.getCodeboxesByLevel(this.nivel).subscribe(
       (response: Codebox[]) => {

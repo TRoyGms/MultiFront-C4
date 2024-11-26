@@ -15,10 +15,10 @@ export class GameLogicServiceService {
   ];
 
   walls: Pared[] = [
-    { ladox1: 50, ladox2: 59, ladoy1: 150, ladoy2: 550, textura: 'black' },
-    { ladox1: 800, ladox2: 809, ladoy1: 150, ladoy2: 550, textura: 'black' },
-    { ladox1: 50, ladox2: 809, ladoy1: 150, ladoy2: 159, textura: 'black' },
-    { ladox1: 50, ladox2: 809, ladoy1: 550, ladoy2: 559, textura: 'black' },
+     { ladox1: 0, ladox2: 30, ladoy1: 150, ladoy2: 151, textura: 'black' },
+    { ladox1: 30, ladox2: 35, ladoy1: 150, ladoy2: 550, textura: 'black' },
+    { ladox1: 1000, ladox2: 1001, ladoy1: 150, ladoy2: 159, textura: 'black' },
+    { ladox1: 50, ladox2: 809, ladoy1: 550, ladoy2: 559, textura: 'black' }, 
   ];
 
   secondCamera = {
