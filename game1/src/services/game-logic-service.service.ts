@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Pared } from '../app/game-module/Interface/pared';
 import { Puente } from '../app/game-module/Interface/puente';
+import { WallsService } from './walls.service';
+import { Codebox } from '../app/codebox/interface/codebox';
+import { CodeboxService } from '../app/codebox/service/codebox.service';
+import { Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +13,76 @@ import { Puente } from '../app/game-module/Interface/puente';
 export class GameLogicServiceService {
   currentCamera = 1;
   isGameOver = false;
+  private codeboxNearSource = new Subject<string | null>();
+  codeboxNear$ = this.codeboxNearSource.asObservable(); 
+  constructor(private wallService:WallsService,private codeboxService:CodeboxService){}
 
   bridge: Puente[] = [
     { id:"1", idnivel:1, ladox1: 110, ladox2: 130, ladoy1: 200, ladoy2: 250, idtextuta: 'black' },
     { id:"1", idnivel:1, ladox1: 270, ladox2: 290, ladoy1: 200, ladoy2: 250, idtextuta: 'red' }
   ];
 
-  walls: Pared[] = [
-     { ladox1: 0, ladox2: 30, ladoy1: 150, ladoy2: 151, textura: 'black' },
-    { ladox1: 30, ladox2: 35, ladoy1: 150, ladoy2: 550, textura: 'black' },
-    { ladox1: 1000, ladox2: 1001, ladoy1: 150, ladoy2: 159, textura: 'black' },
-    { ladox1: 50, ladox2: 809, ladoy1: 550, ladoy2: 559, textura: 'black' }, 
-  ];
+  walls: Pared[] = [];
+
+  loadParedes(): void {
+    this.wallService.getWalls().subscribe({
+      next: (paredes: Pared[]) => {
+        console.log('paredes recibidos:', paredes);
+        this.walls = paredes;  // Asignar los codeboxes recibidos al array
+      },
+      error: (err) => {
+        console.error('Error al cargar las paredes:', err);  // Manejo de errores
+      }
+    });
+  }
+
+  codeboxes:Codebox[]=[]
+
+  loadCodebox(nivel:number): void {
+    this.codeboxService.getCodeboxesByLevel(nivel).subscribe({
+      next: (codeboxes: Codebox[]) => {
+        console.log('Codeboxes recibidos:', codeboxes);
+        this.codeboxes = codeboxes;  // Asignar los codeboxes recibidos al array
+        console.log("aqui",this.codeboxes);
+        
+      },
+      error: (err) => {
+        console.error('Error al cargar las codeboxes:', err);  // Manejo de errores
+      }
+    });
+  }
+
+  removeCodeBox(id: string): void { // Cambiado a stringlog
+    
+    const originalLength = this.codeboxes.length;
+    this.codeboxes = this.codeboxes.filter(codebox => codebox._id !== id);
+    console.log("codeboxid",this.codeboxes);
+    
+    if (this.codeboxes.length < originalLength) {
+      console.log(`CodeBox con ID ${id} ha sido eliminado.`);
+    } else {
+      console.log(`No se encontró el CodeBox con ID ${id}.`);
+    }
+  }
+
+  
+  checkCodeBoxNear(x: number, y: number): string | null { // Cambiado a string
+    console.log("checar",this.codeboxes);
+    
+    const codebox = this.codeboxes.find(codebox => (
+      x + 35 >= codebox.ladox1 && x < codebox.ladox2 &&
+      y + 60 >= codebox.ladoy1 && y < codebox.ladoy2
+    ));
+    if (codebox) {
+      console.log("codebox encontrado",codebox._id);
+      this.codeboxNearSource.next(codebox._id);
+      return codebox._id;
+    } else {
+      this.codeboxNearSource.next(null);
+      return null;
+    }
+  }
+
 
   secondCamera = {
     x1: 800,

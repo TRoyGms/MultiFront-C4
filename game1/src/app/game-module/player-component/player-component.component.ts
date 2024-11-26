@@ -63,7 +63,19 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
         newX += speed;
         this.facingLeft = false;
         break;
+        case ' ': // Tecla Espacio para recoger CodeBox
+        const codebox = this.gameLogic.checkCodeBoxNear(newX, newY);
+        if (codebox !== null) { // Verifica que no sea null
+            console.log(`CodeBox encontrado con ID: ${codebox}`);
+            this.collectCodeBox(codebox);
+        } else {
+            console.log('No hay CodeBox cercano para recoger.');
+        }
+        return;
+    
     }
+
+    this.gameLogic.checkCodeBoxNear(newX,newY)
 
     // Verificar si no hay colisión con las paredes
     if (!this.gameLogic.checkWallCollision(newX, newY)) {
@@ -74,4 +86,14 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
     // Verificar si el jugador necesita cambiar de cámara
     this.gameLogic.checkCameraTransition(this.x, this.y);
   }
+
+
+  collectCodeBox(id: string): void { // Cambiado a string
+    this.gameLogic.removeCodeBox(id);
+  }
+  
+
+
+  
+
 }

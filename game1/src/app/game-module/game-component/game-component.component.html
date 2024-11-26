@@ -15,12 +15,8 @@
   </div>
 
   <!-- Codeboxes -->
-  <div *ngIf="codeboxes.length > 0" class="absolute top-0 right-0">
-    <codebox-img
-      *ngFor="let codebox of codeboxes"
-      [codebox]="codebox"
-      class="m-2"
-    ></codebox-img>
+  <div>
+    <app-codebox [codeboxes]="gameLogic.codeboxes"></app-codebox>
   </div>
 
   <!-- Puentes -->

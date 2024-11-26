@@ -19,7 +19,7 @@ export class GameComponentComponent implements OnInit {
   public terminales: Terminal[] = [];
   public bridges: Puente[] = [];
   public walls: Pared[] = []
-  public nivel: number = 0 
+  public nivel: number = 2 
 
   constructor(
     public codeboxS: CodeboxService,
@@ -30,7 +30,7 @@ export class GameComponentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.nivel= parseInt(localStorage.getItem("idnivel") || "0", 10)
+   // this.nivel= parseInt(localStorage.getItem("idnivel") || "0", 10)
   
     // Cargar terminales
     this.terminalS.getTerminalsByLvl(this.nivel).subscribe(
@@ -50,13 +50,13 @@ export class GameComponentComponent implements OnInit {
     })
 
     // Cargar codeboxes
-    this.codeboxS.getCodeboxesByLevel(this.nivel).subscribe(
+    /*this.codeboxS.getCodeboxesByLevel(this.nivel).subscribe(
       (response: Codebox[]) => {
         console.log('Codeboxes cargadas:', response);
         this.codeboxes = response; // Lo mismo, acceso directo a la respuesta
       },
       (error) => console.error('Error al cargar codeboxes:', error)
-    );
+    );*/
   
     // Cargar puentes
     this.bridgeS.getBridgesByLvl(this.nivel).subscribe(
