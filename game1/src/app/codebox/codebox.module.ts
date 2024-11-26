@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CodeboxComponent } from './codebox/codebox.component';
+import { CodeboxImgComponent } from './codebox-img/codebox-img.component';
 
 
 
 @NgModule({
   declarations: [
-    CodeboxComponent,
+    CodeboxImgComponent,
     ],
   imports: [
     CommonModule
   ],
   exports:[
-    CodeboxComponent,
+    CodeboxImgComponent,
   ],
 })
 export class CodeboxModule { }
