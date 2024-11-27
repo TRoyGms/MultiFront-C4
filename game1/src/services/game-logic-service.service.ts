@@ -35,6 +35,8 @@ export class GameLogicServiceService {
   walls: Pared[] = [];
   codeboxes: Codebox[] = [];
   terminales: Terminal[] = []; 
+  removedCodebox: Codebox | null = null;
+  codeboxesDup:Codebox[] = []
 
   // Load walls data from the WallService
   loadParedes(): void {
@@ -54,13 +56,16 @@ export class GameLogicServiceService {
     this.codeboxService.getCodeboxesByLevel(nivel).subscribe({
       next: (codeboxes: Codebox[]) => {
         console.log('Codeboxes recibidos:', codeboxes);
-        this.codeboxes = codeboxes;
+        // Almacenar las codeboxes en una variable auxiliar
+        this.codeboxes = codeboxes; // Esta sigue siendo la variable que usas
+        this.codeboxesDup = [...codeboxes]; // Almacenar una copia inmutable
       },
       error: (err) => {
         console.error('Error al cargar las codeboxes:', err);
       }
     });
   }
+  
 
   // Load terminals for the given level
   loadTerminal(nivel: number): void {
@@ -78,13 +83,13 @@ export class GameLogicServiceService {
 
   // Check proximity to codeboxes
   checkCodeBoxNear(x: number, y: number): string | null {
-    console.log("checar codeboxes", this.codeboxes);
+    //console.log("checar codeboxes", this.codeboxes);
     const codebox = this.codeboxes.find(codebox => (
-      x + 35 >= codebox.ladox1 && x < codebox.ladox2 &&
-      y + 60 >= codebox.ladoy1 && y < codebox.ladoy2
+      x + 70 >= codebox.ladox1 && x < codebox.ladox2 &&
+      y + 110 >= codebox.ladoy1 && y < codebox.ladoy2
     ));
     if (codebox) {
-      console.log("Codebox encontrado", codebox._id);
+      //console.log("Codebox encontrado", codebox._id);
       this.codeboxNearSource.next(codebox._id);
       return codebox._id;
     } else {
@@ -95,13 +100,13 @@ export class GameLogicServiceService {
 
   // Check proximity to terminals
   checkTerminalNear(x: number, y: number): string | null {
-    console.log("checar terminales", this.terminales);
+    //console.log("checar terminales", this.terminales);
     const terminal = this.terminales.find(terminal => (
-      x + 35 >= terminal.ladox1 && x < terminal.ladox2 &&
-      y + 60 >= terminal.ladoy1 && y < terminal.ladoy2
+      x +70 >= terminal.ladox1 && x < terminal.ladox2 &&
+      y + 110 >= terminal.ladoy1 && y < terminal.ladoy2
     ));
     if (terminal) {
-      console.log("Terminal encontrado", terminal._id);
+     // console.log("Terminal encontrado", terminal._id);
       this.terminalNearSource.next(terminal._id);  // Notify about the terminal being near
       return terminal._id;
     } else {
@@ -110,18 +115,18 @@ export class GameLogicServiceService {
     }
   }
 
-  // Remove a codebox by ID
-  removeCodeBox(id: string): void {
-    const originalLength = this.codeboxes.length;
-    this.codeboxes = this.codeboxes.filter(codebox => codebox._id !== id);
-    console.log("codeboxid", this.codeboxes);
-    
-    if (this.codeboxes.length < originalLength) {
-      console.log(`CodeBox con ID ${id} ha sido eliminado.`);
+  removeCodeBox(id: string): Codebox | null {
+    const codeboxIndex = this.codeboxes.findIndex(codebox => codebox._id === id);
+    if (codeboxIndex !== -1){
+      const removedCodebox = this.codeboxes.splice(codeboxIndex, 1)[0]; // Extrae y elimina el CodeBox
+      //console.log(`CodeBox con ID ${id} ha sido eliminado.`);
+      return removedCodebox;
     } else {
-      console.log(`No se encontró el CodeBox con ID ${id}.`);
+      //console.log(`No se encontró el CodeBox con ID ${id}.`);
+      return null;
     }
   }
+  
 
   // Remove a terminal by ID
   removeTerminal(id: string): void {
@@ -135,6 +140,29 @@ export class GameLogicServiceService {
       console.log(`No se encontró el Terminal con ID ${id}.`);
     }
   }
+
+  attachCodeBoxToTerminal(codeboxId: string, terminalId: string): void {
+    // Utiliza la copia inmutable de las codeboxes
+    const terminal = this.terminales.find(t => t._id === terminalId);
+    const codebox = this.codeboxesDup.find(cb => cb._id === codeboxId);
+    
+    console.log("terminal: ", terminal, " codebox: ", this.codeboxesDup);
+    
+    if (terminal && codebox) {
+      // Actualizar las coordenadas del CodeBox para que aparezca al lado de la Terminal
+      codebox.ladox1 = terminal.ladox2 + 10; // Ajusta según el tamaño
+      codebox.ladoy1 = terminal.ladoy1;
+      codebox.ladox2 = terminal.ladox2 + 30;
+      codebox.ladoy2 = terminal.ladoy1 + 20;
+      
+      console.log(`CodeBox ${codeboxId} asignado a Terminal ${terminalId}`);
+    } else {
+      console.error("No se encontraron los objetos para vincular.");
+    }
+  }
+  
+  
+
 
   secondCamera = {
     x1: 800,
@@ -174,7 +202,7 @@ export class GameLogicServiceService {
   checkWallCollision(x: number, y: number): boolean {
     const wallsToCheck = this.walls;
     return wallsToCheck.some(walls => (
-      x + 35 >= walls.ladox1 && x < walls.ladox2 && y + 60 >= walls.ladoy1 && y < walls.ladoy2
+      x +50 >= walls.ladox1 && x+20 < walls.ladox2 && y+90 >= walls.ladoy1 && y +20< walls.ladoy2
     ));
   }
 

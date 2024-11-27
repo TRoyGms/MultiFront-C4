@@ -3,13 +3,15 @@
   class="wall absolute"
   [ngStyle]="{ 
     left: terminal.ladox1 + 'px', 
-    top: terminal.ladoy1 + 150 + 'px', 
+    top: terminal.ladoy1 + 'px', 
     width: (terminal.ladox2 - terminal.ladox1) + 'px', 
     height: (terminal.ladoy2 - terminal.ladoy1) + 'px',
-    backgroundImage: 'url(/terminal.png)' 
+    backgroundImage: 'url(' + terminal.textura + ')',
+    backgroundSize: 'cover', 
+    backgroundRepeat: 'no-repeat' 
   }">
-  <img [src]="terminalImg" alt="Terminal">
 </div>
+
 
 <div *ngIf="nearTerminalId !== null" 
   class="absolute bg-black bg-opacity-70 text-white px-2 py-1 rounded transform -translate-x-1/2"
@@ -19,4 +21,19 @@
       top: (nearTerminalPosition.y - 30) + 'px'
     } : {}">
   <p>{{ nearTerminalMessage }}</p>
+</div>
+
+
+<!-- Renderizar el CodeBox al lado de la terminal -->
+<div *ngIf="codebox" 
+  class="wall absolute"
+  [ngStyle]="{ 
+    left: (codebox.ladox1 + codeboxOffsetX) + 'px', 
+    top: (codebox.ladox2 + codeboxOffsetY) + 'px', 
+    width: (codebox.ladox2 - codebox.ladox1) + 'px', 
+    height: (codebox.ladoy2 - codebox.ladoy1) + 'px',
+    backgroundImage: 'url(' + codebox.textura + ')',
+    backgroundSize: 'cover', 
+    backgroundRepeat: 'no-repeat' 
+  }">
 </div>
