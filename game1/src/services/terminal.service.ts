@@ -23,7 +23,7 @@ export class TerminalService {
     });
 
     // Hacemos la solicitud y mapeamos la respuesta para devolver solo `data`
-    return this.http.get<{ data: Terminal[] }>(`${this.url}terminal/nivel/${2}`, { headers })
+    return this.http.get<{ data: Terminal[] }>(`${this.url}terminal/nivel/${levelid}`, { headers })
       .pipe(
         map(response => response.data) // Extraemos la propiedad `data`
       );

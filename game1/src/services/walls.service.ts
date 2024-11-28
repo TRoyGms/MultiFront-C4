@@ -26,7 +26,7 @@ export class WallsService implements OnInit{
       'Authorization': `${token}`,
       'Content-Type': 'application/json'
     }) 
-    const Url = `${this.URL}pared/nivel/${2}`
+    const Url = `${this.URL}pared/nivel/${idnivel}`
     
     return this.http.get<{data:Pared[]}>(Url, {headers})
     .pipe(
