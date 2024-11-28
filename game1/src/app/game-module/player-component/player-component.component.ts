@@ -3,6 +3,7 @@ import { GameLogicServiceService } from '../../../services/game-logic-service.se
 import { TimerService } from '../../../services/timer.service';
 import { Codebox } from '../../codebox/interface/codebox';
 import { CodeboxService } from '../../codebox/service/codebox.service';
+import { TerminalIndicatorStateService } from '../../../services/terminal-indicator-state.service';
 
 @Component({
   selector: 'app-player-component',
@@ -10,6 +11,8 @@ import { CodeboxService } from '../../codebox/service/codebox.service';
   styleUrls: ['./player-component.component.css']
 })
 export class PlayerComponentComponent implements OnInit, OnDestroy {
+  terminalesCompletados: number =  0
+
  codebox:Codebox | null = null
   x = 170;
   y = 175;
@@ -23,12 +26,14 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
   codeboxid:string | null = null
 
   constructor(
+    private terminalIndicatorStateService : TerminalIndicatorStateService,
     private gameLogic: GameLogicServiceService,
     private timerService: TimerService,
     private codeboxService: CodeboxService
   ) {}
 
   ngOnInit() {
+    this.terminalesCompletados = Number(sessionStorage.getItem("terminalesTotales")) || 0
     // Añadir listener para los eventos de teclado
     this.keyDownListener = window.addEventListener('keydown', (event: KeyboardEvent) => this.move(event));
 
@@ -43,6 +48,7 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
     if (this.keyDownListener) {
       window.removeEventListener('keydown', this.keyDownListener);
     }
+    sessionStorage.clear()
   }
 
   move(event: KeyboardEvent) {
@@ -93,11 +99,24 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
       if (this.codeboxid && this.terminalid) {
         this.gameLogic.attachCodeBoxToTerminal(this.codeboxid, this.terminalid).then(isAccepted => {
           if (isAccepted) {
+
             console.log('CodeBox aceptado por la terminal.');
+            let counter = Number (sessionStorage.getItem("terminalesTotales"))
+            counter--
+            while(counter >0){
+              this.terminalIndicatorStateService.blinkGreen()  // << parpadea verde si la terminal acepta el codebox
+              sessionStorage.clear()
+              sessionStorage.setItem("terminalesTotales", counter.toString())
+            }
+            if(counter === 0){
+              this.terminalIndicatorStateService.setCompleted()
+            }
+
             this.codebox = null; // Liberar el CodeBox del jugador
             this.codeboxid = null; // Resetear el ID de CodeBox recogido
             this.terminalid = null; // Resetear el ID de Terminal seleccionada
           } else {
+            this.terminalIndicatorStateService.blinkRed()
             console.log('CodeBox rechazado por la terminal. El jugador lo conserva.');
           }
         }).catch(error => {

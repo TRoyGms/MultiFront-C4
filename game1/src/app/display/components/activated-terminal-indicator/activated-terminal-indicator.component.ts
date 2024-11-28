@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TerminalIndicatorStateService } from '../../../../services/terminal-indicator-state.service';
 
 @Component({
   selector: 'activated-terminal-indicator',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
 
 })
 export class ActivatedTerminalIndicatorComponent {
+  constructor(public terminalStateIndicatorService : TerminalIndicatorStateService) {}
 
 }

@@ -1,1 +1,8 @@
-<div class="w-20 h-20 border-green-950 border-[4px] bg-gray-200 rounded-full"></div>
+<div class="w-20 h-20 border-[4px] rounded-full"
+[ngClass]="{
+    'bg-green-400 border-green-500 ': terminalStateIndicatorService.completed,
+    'bg-red-500 border-red-950 animate-blink': terminalStateIndicatorService.blinkingRED && !terminalStateIndicatorService.completed,
+    'bg-gray-300 border-gray-500':  !terminalStateIndicatorService.blinkingRED && !terminalStateIndicatorService.blinkingGREEN,
+    'bg-green-400 border-green-500 animate-blink': terminalStateIndicatorService.blinkingGREEN
+  }"
+  ></div>

@@ -29,6 +29,7 @@ export class GameLogicServiceService {
     private bridgeService:BridgeService // Inject the terminal service
   ) {}
 
+  terminalesTotales: number = 0
   bridge: Puente[] = [];
   bridgeAux:Puente[]=[]
 
@@ -65,15 +66,13 @@ export class GameLogicServiceService {
     });
   }
   
-
-  // Load codeboxes for the given level
   loadCodebox(nivel: number): void {
     this.codeboxService.getCodeboxesByLevel(nivel).subscribe({
       next: (codeboxes: Codebox[]) => {
         console.log('Codeboxes recibidos:', codeboxes);
-        // Almacenar las codeboxes en una variable auxiliar
-        this.codeboxes = codeboxes; // Esta sigue siendo la variable que usas
-        this.codeboxesDup = [...codeboxes]; // Almacenar una copia inmutable
+       
+        this.codeboxes = codeboxes; 
+        this.codeboxesDup = [...codeboxes]; 
       },
       error: (err) => {
         console.error('Error al cargar las codeboxes:', err);
@@ -81,13 +80,13 @@ export class GameLogicServiceService {
     });
   }
   
-
-  // Load terminals for the given level
   loadTerminal(nivel: number): void {
     this.terminalService.getTerminalsByLvl(nivel).subscribe({
       next: (terminals: Terminal[]) => {
         console.log('Terminales cargadas:', terminals);
         this.terminales = terminals;
+        this.terminalesTotales = this.terminales.length
+        sessionStorage.setItem("terminalesTotales", this.terminalesTotales.toString())
       },
       error: (err) => {
         console.error('Error al cargar terminales:', err);
