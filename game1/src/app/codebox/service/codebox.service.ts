@@ -21,7 +21,7 @@ export class CodeboxService {
     });
 
     return this.http
-      .get<{ data: Codebox[] }>(`${this.url}bloqueCodigo/nivel/${levelId}`, { headers })
+      .get<{ data: Codebox[] }>(`${this.url}bloqueCodigo/nivel/${2}`, { headers })
       .pipe(map((response) => response.data)); // Extraemos la propiedad `data`
   }
 }

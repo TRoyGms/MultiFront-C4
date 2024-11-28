@@ -10,7 +10,7 @@ import { CodeboxService } from '../../codebox/service/codebox.service';
   styleUrls: ['./player-component.component.css']
 })
 export class PlayerComponentComponent implements OnInit, OnDestroy {
-  @Input() codebox:Codebox | null = null
+ codebox:Codebox | null = null
   x = 170;
   y = 175;
   facingLeft = false;
@@ -71,30 +71,41 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
         newX += speed;
         this.facingLeft = false;
         break;
-      case ' ': // Tecla Espacio para recoger CodeBox
-        // Comprobar si hay un CodeBox cercano y actualizar solo si es diferente
+        case ' ': // Tecla Espacio para recoger o soltar CodeBox
+        // Comprobar si hay un CodeBox cercano y recogerlo
         const newCodeboxId = this.gameLogic.checkCodeBoxNear(newX, newY);
         if (newCodeboxId && newCodeboxId !== this.codeboxid) {
           this.codeboxid = newCodeboxId;
           this.collectCodeBox(this.codeboxid);
           console.log(`Nuevo CodeBox encontrado con ID: ${this.codeboxid}`);
         }
-  
-        // Comprobar si hay una terminal cercana y actualizar solo si es diferente
+      
+        // Comprobar si hay una terminal cercana
         const newTerminalId = this.gameLogic.checkTerminalNear(newX, newY);
         if (newTerminalId && newTerminalId !== this.terminalid) {
           this.terminalid = newTerminalId;
           console.log(`Nueva terminal encontrada con ID: ${this.terminalid}`);
         }
-  
-        // Verificar si ambos IDs están disponibles
-        if (this.codeboxid && this.terminalid) {
-          console.log("Ambos IDs disponibles - Terminal:", this.terminalid, "CodeBox:", this.codeboxid);
-          this.gameLogic.attachCodeBoxToTerminal(this.codeboxid, this.terminalid);
-          this.codebox = null; // El jugador ya no tiene el CodeBox
-        }
+    
+        console.log("codebox: ",this.codeboxid," terminal: ",this.terminalid);
         
+
+      if (this.codeboxid && this.terminalid) {
+        this.gameLogic.attachCodeBoxToTerminal(this.codeboxid, this.terminalid).then(isAccepted => {
+          if (isAccepted) {
+            console.log('CodeBox aceptado por la terminal.');
+            this.codebox = null; // Liberar el CodeBox del jugador
+            this.codeboxid = null; // Resetear el ID de CodeBox recogido
+            this.terminalid = null; // Resetear el ID de Terminal seleccionada
+          } else {
+            console.log('CodeBox rechazado por la terminal. El jugador lo conserva.');
+          }
+        }).catch(error => {
+          console.error('Error al conectar con la terminal:', error);
+        });
+      }
         return;
+      
     }
 
     this.gameLogic.checkCodeBoxNear(newX,newY)
@@ -113,24 +124,21 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
 
 
   collectCodeBox(id: string): void {
+
     if (this.codebox) {
-      // Si el jugador ya tiene un CodeBox, guardarlo en GameLogicService
-      this.gameLogic.codeboxes.push(this.codebox);
-      console.log('CodeBox actual guardado en GameLogicService:', this.codebox);
-  
-      // Eliminar el CodeBox del jugador
-      this.codebox = null;
+      this.gameLogic.codeboxes.push(this.codebox)
     }
   
-    // Recoger el nuevo CodeBox
+    // Buscar y eliminar la CodeBox del nivel
     const newCodebox = this.gameLogic.removeCodeBox(id);
     if (newCodebox) {
-      this.codebox = newCodebox; // Asignar el nuevo CodeBox al jugador
+      this.codebox = newCodebox; // Asignar la nueva CodeBox al jugador
       console.log('Nuevo CodeBox recogido:', this.codebox);
     } else {
       console.log('No se pudo recoger el nuevo CodeBox.');
     }
   }
+  
   
   
 

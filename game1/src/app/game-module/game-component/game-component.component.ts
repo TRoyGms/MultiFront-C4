@@ -61,7 +61,7 @@ export class GameComponentComponent implements OnInit {
     );*/
   
     // Cargar puentes
-    this.bridgeS.getBridgesByLvl(this.nivel).subscribe(
+    this.bridgeS.getBridgesByLvl(4).subscribe(
       (response: Puente[]) => {
         console.log('Puentes cargados:', response);
         this.bridges = response; // Acceso directo a la respuesta sin 'data'
