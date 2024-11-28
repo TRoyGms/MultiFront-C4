@@ -52,7 +52,7 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
       return;
     }
   
-    const speed = 10;
+    const speed = 12;
     let newX = this.x;
     let newY = this.y;
   
