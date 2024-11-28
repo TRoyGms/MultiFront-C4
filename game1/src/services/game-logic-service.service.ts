@@ -24,7 +24,7 @@ export class GameLogicServiceService {
   constructor(
     private wallService: WallsService,
     private codeboxService: CodeboxService,
-    private terminalService: TerminalService  // Inject the terminal service
+    private terminalService: TerminalService  
   ) {}
 
   bridge: Puente[] = [
@@ -38,7 +38,6 @@ export class GameLogicServiceService {
   removedCodebox: Codebox | null = null;
   codeboxesDup:Codebox[] = []
 
-  // Load walls data from the WallService
   loadParedes(): void {
     this.wallService.getWalls().subscribe({
       next: (paredes: Pared[]) => {
@@ -51,7 +50,6 @@ export class GameLogicServiceService {
     });
   }
 
-  // Load codeboxes for the given level
   loadCodebox(nivel: number): void {
     this.codeboxService.getCodeboxesByLevel(nivel).subscribe({
       next: (codeboxes: Codebox[]) => {
@@ -66,8 +64,6 @@ export class GameLogicServiceService {
     });
   }
   
-
-  // Load terminals for the given level
   loadTerminal(nivel: number): void {
     this.terminalService.getTerminalsByLvl(nivel).subscribe({
       next: (terminals: Terminal[]) => {
@@ -79,9 +75,7 @@ export class GameLogicServiceService {
       }
     });
   }
-  
 
-  // Check proximity to codeboxes
   checkCodeBoxNear(x: number, y: number): string | null {
     //console.log("checar codeboxes", this.codeboxes);
     const codebox = this.codeboxes.find(codebox => (
@@ -98,7 +92,6 @@ export class GameLogicServiceService {
     }
   }
 
-  // Check proximity to terminals
   checkTerminalNear(x: number, y: number): string | null {
     //console.log("checar terminales", this.terminales);
     const terminal = this.terminales.find(terminal => (
@@ -126,9 +119,7 @@ export class GameLogicServiceService {
       return null;
     }
   }
-  
-
-  // Remove a terminal by ID
+    // Remove a terminal by ID
   removeTerminal(id: string): void {
     const originalLength = this.terminales.length;
     this.terminales = this.terminales.filter(terminal => terminal._id !== id);
@@ -150,7 +141,6 @@ export class GameLogicServiceService {
         console.warn(`La terminal ${terminalId} ya tiene un CodeBox asignado.`);
         return false;  // Rechazado si ya tiene un CodeBox
       }
-  
       try {
         const result = await this.terminalService.buscar(terminalId, codeboxId).toPromise();
         console.log(result);
@@ -173,13 +163,8 @@ export class GameLogicServiceService {
       return false;  // Error, no se encontró terminal o codebox
     }
   }
-  
-  
-  
-  
 
-
-  secondCamera = {
+/*   secondCamera = {
     x1: 800,
     x2: 800,
     y1: 300,
@@ -203,8 +188,8 @@ export class GameLogicServiceService {
       position: { x: 460, y: 300 },
     },
   };
-
-  checkCameraTransition(x: number, y: number) {
+ */
+/*   checkCameraTransition(x: number, y: number) {
     if (this.isAtBridgeEntry(x, y) || this.isAtSecondCameraArea(x, y)) {
       console.log("segunda cámara");
       this.currentCamera = 2;
@@ -212,7 +197,7 @@ export class GameLogicServiceService {
       console.log('primera cámara');
       this.currentCamera = 1;
     }
-  }
+  } */
 
   checkWallCollision(x: number, y: number): boolean {
     const wallsToCheck = this.walls;
@@ -220,13 +205,13 @@ export class GameLogicServiceService {
       x +50 >= walls.ladox1 && x+20 < walls.ladox2 && y+90 >= walls.ladoy1 && y +20< walls.ladoy2
     ));
   }
-
+/* 
   private isAtSecondCameraArea(x: number, y: number): boolean {
     return (
       x >= this.secondCamera.x1 && x <= this.secondCamera.x2 &&
       y >= this.secondCamera.y1 && y <= this.secondCamera.y2
     );
-  }
+  } */
 
   private isAtBridgeEntry(x: number, y: number): boolean {
     return this.bridge.some(bridgeSegment => (

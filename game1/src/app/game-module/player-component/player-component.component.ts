@@ -118,7 +118,7 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
     }
   
     // Verificar si el jugador necesita cambiar de cámara
-    this.gameLogic.checkCameraTransition(this.x, this.y);
+   // this.gameLogic.checkCameraTransition(this.x, this.y);
   }
   
 

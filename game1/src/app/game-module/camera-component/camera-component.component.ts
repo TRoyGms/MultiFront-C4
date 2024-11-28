@@ -15,12 +15,12 @@ export class CameraComponentComponent {
       this.player.position.y = y;
 
       // Comprobar la transición de cámara
-      this.checkCameraTransition(x, y);
+     // this.checkCameraTransition(x, y);
     }
   }
-
+/* 
   checkCameraTransition(x: number, y: number) {
     // Lógica para comprobar la transición de cámara
     // Aquí deberías definir cómo reaccionar cuando el jugador se mueve
-  }
+  } */
 }

@@ -15,7 +15,7 @@ export class BridgeComponentComponent {
 
   constructor(private gameLogic: GameLogicServiceService) {
 
-    this.bridgeEntry = this.gameLogic.secondCameraComponents.bridge.entry;
-    this.bridgeExit = this.gameLogic.secondCameraComponents.bridge.exit;
+    //this.bridgeEntry = this.gameLogic.secondCameraComponents.bridge.entry;
+    //this.bridgeExit = this.gameLogic.secondCameraComponents.bridge.exit;
   }
 }
