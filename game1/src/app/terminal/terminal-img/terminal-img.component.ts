@@ -17,7 +17,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
   @Input() terminales!: { 
     _id: string;  
     idnivel: number;
-    idpuente: number;
+    idpuente: string;
     ladox1: number;
     ladox2: number; 
     ladoy1: number; 
@@ -27,7 +27,6 @@ export class TerminalComponent implements OnInit, OnDestroy {
     codebox:{
       _id: string
       idnivel: number
-      idpuente: number
       ladox1: number
       ladox2: number
       ladoy1: number

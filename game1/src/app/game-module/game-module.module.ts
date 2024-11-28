@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerComponentComponent } from './player-component/player-component.component';
-import { BridgeComponentComponent } from './bridge-component/bridge-component.component';
 import { CameraComponentComponent } from './camera-component/camera-component.component';
 import { GameComponentComponent } from './game-component/game-component.component';
 import { WallcomponentComponent } from './wallcomponent/wallcomponent.component';
@@ -11,15 +10,16 @@ import { LevelsModule } from '../levels/levels.module';
 import { LvlSelectorComponent } from './components/lvl-selector/lvl-selector.component';
 import { TerminalModule } from '../terminal/terminal.module';
 import { CodeboxModule } from '../codebox/codebox.module';
+import { BridgeComponentComponent } from './bridge-component/bridge-component.component';
 
 @NgModule({
   declarations: [
     PlayerComponentComponent,
-    BridgeComponentComponent,
     CameraComponentComponent,
     GameComponentComponent,
     WallcomponentComponent,
-    LvlSelectorComponent
+    LvlSelectorComponent,
+    BridgeComponentComponent    
   ],
   imports: [
     TerminalModule,

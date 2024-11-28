@@ -1,21 +1,10 @@
-<!-- Entrada del puente -->
-<div class="bridge-entry" 
-     [ngStyle]="{ 
-       left: bridgeEntry.x1 + 'px', 
-       top: bridgeEntry.y1 + 'px', 
-       width: (bridgeEntry.x2 - bridgeEntry.x1) + 'px', 
-       height: (bridgeEntry.y2 - bridgeEntry.y1) + 'px', 
-       backgroundColor: bridgeEntry.color 
-     }">
-</div>
-
-<!-- Salida del puente -->
-<div class="bridge-exit" 
-     [ngStyle]="{ 
-       left: bridgeExit.x1 + 'px', 
-       top: bridgeExit.y1 + 'px', 
-       width: (bridgeExit.x2 - bridgeExit.x1) + 'px', 
-       height: (bridgeExit.y2 - bridgeExit.y1) + 'px', 
-       backgroundColor: bridgeExit.color 
-     }">
+<div *ngFor="let puente of bridge" 
+  class="wall absolute" 
+  [ngStyle]="{ 
+    left: puente.ladox1 + 'px', 
+    top: puente.ladoy1 + 'px', 
+    width: (puente.ladox2 - puente.ladox1) + 'px', 
+    height: (puente.ladoy2 - puente.ladoy1) + 'px',
+    backgroundColor:puente.textura
+  }">
 </div>

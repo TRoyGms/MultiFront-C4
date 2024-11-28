@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderContainerComponent } from './components/header-container/header-container.component';
 import { ActivatedTerminalIndicatorComponent } from './components/activated-terminal-indicator/activated-terminal-indicator.component';
-import { BridgesDisplayComponent } from './components/bridges-display/bridges-display.component';
 import { GameBoardComponent } from './components/game-board/game-board.component';
 import { MainWallsComponent } from './components/main-walls/main-walls.component';
 import { TimeLeftDisplayComponent } from './components/time-left-display/time-left-display.component';
@@ -11,12 +10,12 @@ import { SettingsModalComponent } from './components/settings-modal/settings-mod
 import { ConfirmExitModalComponent } from './components/exit-modal/confirm-exit-modal.component';
 import { LevelsModule } from '../levels/levels.module';
 import { GameOverAlertComponent } from './components/game-over-alert/game-over-alert.component';
+import { BridgeComponentComponent } from '../game-module/bridge-component/bridge-component.component';
 
 @NgModule({
   declarations: [
     HeaderContainerComponent,
     ActivatedTerminalIndicatorComponent,
-    BridgesDisplayComponent,
     GameBoardComponent,
     MainWallsComponent,
     TimeLeftDisplayComponent,
@@ -31,7 +30,6 @@ import { GameOverAlertComponent } from './components/game-over-alert/game-over-a
   exports:[
     HeaderContainerComponent,
     ActivatedTerminalIndicatorComponent,
-    BridgesDisplayComponent,
     GameBoardComponent,
     MainWallsComponent,
     TimeLeftDisplayComponent,

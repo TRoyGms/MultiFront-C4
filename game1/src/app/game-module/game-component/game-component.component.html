@@ -37,8 +37,8 @@
   </div>
 
   <!-- Puentes -->
-  <div *ngIf="bridges.length > 0" class="absolute bottom-0 left-1/2 transform -translate-x-1/2">
-    <bridges-display [bridges]="bridges" class="m-4"></bridges-display>
+  <div>
+    <app-bridge-component [bridge]="gameLogic.bridge" class="m-4"></app-bridge-component>
   </div>
 
   <!-- Wall Component -->

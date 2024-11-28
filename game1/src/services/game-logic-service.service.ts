@@ -7,6 +7,7 @@ import { CodeboxService } from '../app/codebox/service/codebox.service';
 import { Subject } from 'rxjs';
 import { Terminal } from '../app/terminal/interface/terminal';
 import { TerminalService } from './terminal.service';
+import { BridgeService } from './bridge.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,19 +25,19 @@ export class GameLogicServiceService {
   constructor(
     private wallService: WallsService,
     private codeboxService: CodeboxService,
-    private terminalService: TerminalService  // Inject the terminal service
+    private terminalService: TerminalService ,
+    private bridgeService:BridgeService // Inject the terminal service
   ) {}
 
-  bridge: Puente[] = [
-    { id: "1", idnivel: 1, ladox1: 110, ladox2: 130, ladoy1: 200, ladoy2: 250, idtextuta: 'black' },
-    { id: "1", idnivel: 1, ladox1: 270, ladox2: 290, ladoy1: 200, ladoy2: 250, idtextuta: 'red' }
-  ];
+  bridge: Puente[] = [];
+  bridgeAux:Puente[]=[]
 
   walls: Pared[] = [];
   codeboxes: Codebox[] = [];
   terminales: Terminal[] = []; 
   removedCodebox: Codebox | null = null;
   codeboxesDup:Codebox[] = []
+
 
   // Load walls data from the WallService
   loadParedes(): void {
@@ -50,6 +51,20 @@ export class GameLogicServiceService {
       }
     });
   }
+
+  loadPuente(): void {
+    console.log("Cargando puentes...");
+    this.bridgeService.getBridgesByLvl().subscribe({
+      next: (puentes: Puente[]) => {
+        console.log('Puentes recibidos:', puentes);
+        this.bridgeAux = puentes;
+      },
+      error: (err) => {
+        console.error('Error al cargar los puentes:', err);
+      }
+    });
+  }
+  
 
   // Load codeboxes for the given level
   loadCodebox(nivel: number): void {
@@ -154,6 +169,17 @@ export class GameLogicServiceService {
       try {
         const result = await this.terminalService.buscar(terminalId, codeboxId).toPromise();
         console.log(result);
+        console.log("terminal",terminal);
+        const bridge = this.bridgeAux.find(b=>b._id === terminal.idpuente)
+        console.log("puente encontrado",bridge);
+        if (bridge) {
+          this.bridge.push(bridge)
+          console.log("puente pusheado");
+        }else{
+          console.log("puente no encontrado o pusheado");
+          
+        }
+        
         
         if (result) {
           // Si la API valida correctamente

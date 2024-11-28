@@ -13,8 +13,11 @@ export class BridgeService {
 
   constructor(private http: HttpClient) {}
 
-  getBridgesByLvl(levelid: number): Observable<Puente[]> {
+  getBridgesByLvl(): Observable<Puente[]> {
     const token = localStorage.getItem('token');
+    const levelid = localStorage.getItem('idnivel')
+    console.log(levelid);
+    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `${token}`,

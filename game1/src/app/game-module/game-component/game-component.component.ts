@@ -17,7 +17,6 @@ import { Pared } from '../Interface/pared';
 export class GameComponentComponent implements OnInit {
   public codeboxes: Codebox[] = [];
   public terminales: Terminal[] = [];
-  public bridges: Puente[] = [];
   public walls: Pared[] = []
   public nivel: number = 0 
   public floorImg = 'lab-floor.jpg'
@@ -61,13 +60,6 @@ export class GameComponentComponent implements OnInit {
     );*/
   
     // Cargar puentes
-    this.bridgeS.getBridgesByLvl(4).subscribe(
-      (response: Puente[]) => {
-        console.log('Puentes cargados:', response);
-        this.bridges = response; // Acceso directo a la respuesta sin 'data'
-      },
-      (error) => console.error('Error al cargar puentes:', error)
-    );
   }
   
     
