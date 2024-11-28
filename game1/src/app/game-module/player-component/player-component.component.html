@@ -1,7 +1,6 @@
-<!-- player-component.component.html -->
+<!-- Renderizar el jugador -->
 <div
-  class="select-none no-underline"  
-  class="player"
+  class="select-none no-underline player"
   [style.left.px]="x"
   [style.top.px]="y"
   [style.background-color]="playerColor"
@@ -13,4 +12,18 @@
     class="player-image"
     [style.transform]="facingLeft ? 'scaleX(-1)' : 'scaleX(1)'"
   />
+</div>
+
+<!-- Renderizar el CodeBox al lado del jugador -->
+<div 
+  *ngIf="codebox" 
+  class="wall absolute"
+  [ngStyle]="{ 
+    left: (x + codeboxOffsetX) + 'px', 
+    top: (y + codeboxOffsetY) + 'px', 
+    width: (codebox.ladox2 - codebox.ladox1-20) + 'px', 
+    height: (codebox.ladoy2 - codebox.ladoy1-20) + 'px',
+    backgroundImage:'url('+codebox.textura+')',
+    backgroundSize: 'cover', 
+    backgroundRepeat: 'no-repeat'  }">
 </div>

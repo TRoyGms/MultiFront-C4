@@ -8,6 +8,11 @@ import { CodeboxService } from '../service/codebox.service';
   templateUrl: './codebox-img.component.html'
 })
 export class CodeboxComponent implements OnInit, OnDestroy {
+
+  codeboxImg = 'codebox.png'
+  private idnivel:number = 0
+ 
+
   @Input() codeboxes!: { _id: string; ladox1: number; ladox2: number; ladoy1: number; ladoy2: number; textura: string; codigo: string }[];
   nearCodeboxId: string | null = null; // Cambiado a string
   nearCodeboxMessage: string = '';
@@ -18,7 +23,9 @@ export class CodeboxComponent implements OnInit, OnDestroy {
   constructor(private gameLogic: GameLogicServiceService) {}
 
   ngOnInit(): void {
-    this.gameLogic.loadCodebox(2);
+    this.idnivel= parseInt(localStorage.getItem('idnivel') || '0', 10)
+    this.gameLogic.loadCodebox(this.idnivel);
+
     
     this.codeboxNearSubscription = this.gameLogic.codeboxNear$.subscribe((id) => {
       this.nearCodeboxId = id;
