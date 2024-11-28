@@ -141,25 +141,40 @@ export class GameLogicServiceService {
     }
   }
 
-  attachCodeBoxToTerminal(codeboxId: string, terminalId: string): void {
-    // Utiliza la copia inmutable de las codeboxes
+  async attachCodeBoxToTerminal(codeboxId: string, terminalId: string): Promise<boolean> {
     const terminal = this.terminales.find(t => t._id === terminalId);
     const codebox = this.codeboxesDup.find(cb => cb._id === codeboxId);
-    
-    console.log("terminal: ", terminal, " codebox: ", this.codeboxesDup);
-    
+  
     if (terminal && codebox) {
-      // Actualizar las coordenadas del CodeBox para que aparezca al lado de la Terminal
-      codebox.ladox1 = terminal.ladox2 + 10; // Ajusta según el tamaño
-      codebox.ladoy1 = terminal.ladoy1;
-      codebox.ladox2 = terminal.ladox2 + 30;
-      codebox.ladoy2 = terminal.ladoy1 + 20;
-      
-      console.log(`CodeBox ${codeboxId} asignado a Terminal ${terminalId}`);
+      if (terminal.codebox) {
+        console.warn(`La terminal ${terminalId} ya tiene un CodeBox asignado.`);
+        return false;  // Rechazado si ya tiene un CodeBox
+      }
+  
+      try {
+        const result = await this.terminalService.buscar(terminalId, codeboxId).toPromise();
+        console.log(result);
+        
+        if (result) {
+          // Si la API valida correctamente
+          terminal.codebox = { ...codebox };
+          console.log(`CodeBox ${codeboxId} asignado correctamente a Terminal ${terminalId}`);
+          return true;  // Asignación exitosa
+        } else {
+          console.warn(`El CodeBox ${codeboxId} no es válido para la Terminal ${terminalId}`);
+          return false;  // Rechazado por validación
+        }
+      } catch (error) {
+        console.error(`Error al conectar con la API: ${error}`);
+        return false;  // En caso de error, no se puede asignar
+      }
     } else {
-      console.error("No se encontraron los objetos para vincular.");
+      console.error('No se encontraron la Terminal o el CodeBox para vincular.');
+      return false;  // Error, no se encontró terminal o codebox
     }
   }
+  
+  
   
   
 

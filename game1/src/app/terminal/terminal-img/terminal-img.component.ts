@@ -8,7 +8,6 @@ import { Codebox } from '../../codebox/interface/codebox';
   templateUrl: './terminal-img.component.html',
 })
 export class TerminalComponent implements OnInit, OnDestroy {
-  private idnivel:number = 0
 
   @Input() codebox: Codebox | null = null; // Recibe el codebox desde el componente padre
   codeboxOffsetX = 60; // Desplazamiento en el eje X para posicionar el CodeBox
@@ -25,6 +24,16 @@ export class TerminalComponent implements OnInit, OnDestroy {
     ladoy2: number; 
     textura: string; 
     codigo: string; 
+    codebox:{
+      _id: string
+      idnivel: number
+      idpuente: number
+      ladox1: number
+      ladox2: number
+      ladoy1: number
+      ladoy2: number
+      textura: string
+      codigo: string}
   }[];  // Lista de terminales
   nearTerminalId: string | null = null;
   nearTerminalMessage: string = '';
@@ -35,8 +44,10 @@ export class TerminalComponent implements OnInit, OnDestroy {
   constructor(public gameLogic: GameLogicServiceService) {}
 
   ngOnInit(): void {
-    this.idnivel= parseInt(localStorage.getItem('idnivel') || '0', 10)
-    this.gameLogic.loadTerminal(this.idnivel); // Cargar la terminal 1 al inicio
+    this.gameLogic.loadTerminal(2); // Cargar la terminal 1 al inicio
+  
+
+    
 
     // Subscribirse a la lógica para mostrar el código y la terminal cercana
     this.terminalNearSubscription = this.gameLogic.terminalNear$.subscribe((id) => {

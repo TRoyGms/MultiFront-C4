@@ -21,7 +21,7 @@ export class BridgeService {
     });
 
     return this.http
-      .get<{ data: Puente[] }>(`${this.url}puente/nivel/${levelid}`, { headers })
+      .get<{ data: Puente[] }>(`${this.url}puente/nivel/${6}`, { headers })
       .pipe(map((response) => response.data)); // Extraemos la propiedad `data`
   }
 }
