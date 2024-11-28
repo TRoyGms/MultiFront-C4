@@ -44,7 +44,24 @@ export class TerminalComponent implements OnInit, OnDestroy {
   constructor(public gameLogic: GameLogicServiceService) {}
 
   ngOnInit(): void {
-    this.gameLogic.loadTerminal(2); // Cargar la terminal 1 al inicio
+    const idnivel: string | null = localStorage.getItem("idnivel");
+
+    // Verificar si idnivel no es null y luego convertirlo a número
+    if (idnivel !== null) {
+      const idnivelInt = parseInt(idnivel, 10);
+      
+    this.gameLogic.loadTerminal(idnivelInt); 
+    
+      // Verificar si la conversión fue exitosa
+      if (!isNaN(idnivelInt)) {
+        
+      } else {
+      }
+    } else {
+    }
+  
+
+  // Cargar la terminal 1 al inicio
   
 
     
