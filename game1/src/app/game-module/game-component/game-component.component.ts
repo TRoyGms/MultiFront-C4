@@ -21,6 +21,8 @@ export class GameComponentComponent implements OnInit {
   public nivel: number = 0 
   public floorImg = 'lab-floor.jpg'
   public LavaTexture = 'LavaTexture.mp4'
+  public showVideo: boolean = false; // Variable para mostrar el video
+  public endAn = "EndAnimation.mp4"
 
 
   constructor(
@@ -33,6 +35,10 @@ export class GameComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.nivel= parseInt(localStorage.getItem("idnivel") || "0", 10)
+
+    this.gameLogic.estadoVID$.subscribe((estado) => {
+      this.showVideo = estado; // Si el estado es true, mostramos el video
+    });
   
     // Cargar terminales
     this.terminalS.getTerminalsByLvl(this.nivel).subscribe(

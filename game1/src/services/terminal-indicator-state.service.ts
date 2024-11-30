@@ -29,7 +29,6 @@ export class TerminalIndicatorStateService {
 
   blinkGreen(): void {
     console.log("Parpadea verde");
-    
     let blinkCount = 0; 
   
     const interval = setInterval(() => {

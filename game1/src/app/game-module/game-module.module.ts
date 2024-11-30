@@ -11,6 +11,7 @@ import { LvlSelectorComponent } from './components/lvl-selector/lvl-selector.com
 import { TerminalModule } from '../terminal/terminal.module';
 import { CodeboxModule } from '../codebox/codebox.module';
 import { BridgeComponentComponent } from './bridge-component/bridge-component.component';
+import { ExitComponent } from './exit/exit.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BridgeComponentComponent } from './bridge-component/bridge-component.co
     GameComponentComponent,
     WallcomponentComponent,
     LvlSelectorComponent,
-    BridgeComponentComponent    
+    BridgeComponentComponent,
+    ExitComponent  
   ],
   imports: [
     TerminalModule,

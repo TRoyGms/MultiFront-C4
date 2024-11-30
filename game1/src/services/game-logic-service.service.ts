@@ -4,7 +4,7 @@ import { Puente } from '../app/game-module/Interface/puente';
 import { WallsService } from './walls.service';
 import { Codebox } from '../app/codebox/interface/codebox';
 import { CodeboxService } from '../app/codebox/service/codebox.service';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Terminal } from '../app/terminal/interface/terminal';
 import { TerminalService } from './terminal.service';
 import { BridgeService } from './bridge.service';
@@ -13,6 +13,15 @@ import { BridgeService } from './bridge.service';
   providedIn: 'root'
 })
 export class GameLogicServiceService {
+
+  exit ={ladox1:1100,ladox2:1200,ladoy1:250,ladoy2:350,image:"exit.png"}
+  private estadoSubject = new BehaviorSubject<boolean>(false); // Estado inicial es false
+  estado$ = this.estadoSubject.asObservable(); // Observable para que los componentes se suscriban
+  private estadoVideo = new BehaviorSubject<boolean>(false); // Estado inicial es false
+  estadoVID$ = this.estadoVideo.asObservable(); // Observable para que los componentes se suscriban
+
+
+
   currentCamera = 1;
   isGameOver = false;
 
@@ -128,6 +137,56 @@ export class GameLogicServiceService {
       return null;
     }
   }
+
+  setTrue() {
+    this.estadoSubject.next(true); // Emite un valor nuevo para 'estado'
+    console.log('Estado actualizado a true');
+  }
+
+  setFalse() {
+    this.estadoSubject.next(false); // Emite un valor nuevo para 'estado'
+    console.log('Estado actualizado a false');
+  }
+
+
+  checkExitNear(x: number, y: number): string | null {
+    if (this.estadoSubject) {
+      const exit = this.exit; // Asegúrate de que 'this.exit' es un objeto, no un arreglo
+    if (
+        x + 70 >= exit.ladox1 && x < exit.ladox2 &&
+        y + 110 >= exit.ladoy1 && y < exit.ladoy2
+    ) {
+        console.log("Salida encontrada");
+        this.estadoVideo.next(true);  // Emitimos true cuando estamos cerca de la salida
+
+        return "exit"; // Devuelve un identificador si lo necesitas
+    } else {
+      this.estadoVideo.next(false);  // Emitimos false cuando no estamos cerca
+        return null;
+        
+    }
+    }else{
+      return null
+    }
+    
+}
+
+
+checkExitNdear(x: number, y: number): string | null {
+  if (
+    x + 70 >= this.exit.ladox1 && x < this.exit.ladox2 &&
+    y + 110 >= this.exit.ladoy1 && y < this.exit.ladoy2
+  ) {
+    this.estadoVideo.next(true);  // Emitimos true cuando estamos cerca de la salida
+    return "exit"; 
+  } else {
+    this.estadoVideo.next(false);  // Emitimos false cuando no estamos cerca
+    return null;
+  }
+}
+
+
+
 
   removeCodeBox(id: string): Codebox | null {
     const codeboxIndex = this.codeboxes.findIndex(codebox => codebox._id === id);

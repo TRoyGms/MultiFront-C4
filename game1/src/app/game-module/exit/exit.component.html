@@ -1,0 +1,16 @@
+<!--div *ngIf="estado" class="flex absolute w-full left-[1100px] top-[250px]">
+    <img class="w-[100px] h-[100px]" src="exit.png" alt="Exit ">
+  </div-->
+
+  <div 
+  *ngIf="estado" 
+  class="wall absolute"
+  [ngStyle]="{ 
+    left: (exit.ladox1) + 'px', 
+    top: (exit.ladoy1) + 'px', 
+    width: (exit.ladox2 - exit.ladox1) + 'px', 
+    height: (exit.ladoy2 - exit.ladoy1) + 'px',
+    backgroundImage:'url('+ exit.image+')',
+    backgroundSize: 'cover', 
+    backgroundRepeat: 'no-repeat'  }">
+</div>

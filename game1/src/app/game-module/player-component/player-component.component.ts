@@ -79,6 +79,7 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
         break;
         case ' ': // Tecla Espacio para recoger o soltar CodeBox
         // Comprobar si hay un CodeBox cercano y recogerlo
+        
         const newCodeboxId = this.gameLogic.checkCodeBoxNear(newX, newY);
         if (newCodeboxId && newCodeboxId !== this.codeboxid) {
           this.codeboxid = newCodeboxId;
@@ -92,6 +93,9 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
           this.terminalid = newTerminalId;
           console.log(`Nueva terminal encontrada con ID: ${this.terminalid}`);
         }
+
+    
+        
     
         console.log("codebox: ",this.codeboxid," terminal: ",this.terminalid);
         
@@ -103,13 +107,18 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
             console.log('CodeBox aceptado por la terminal.');
             let counter = Number (sessionStorage.getItem("terminalesTotales"))
             counter--
-            while(counter >0){
+            console.log(counter);
+            
+            if(counter >0){
+              console.log("ciclando");
+              
               this.terminalIndicatorStateService.blinkGreen()  // << parpadea verde si la terminal acepta el codebox
               sessionStorage.clear()
               sessionStorage.setItem("terminalesTotales", counter.toString())
             }
             if(counter === 0){
               this.terminalIndicatorStateService.setCompleted()
+              this.gameLogic.setTrue()
             }
 
             this.codebox = null; // Liberar el CodeBox del jugador
@@ -129,6 +138,8 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
 
     this.gameLogic.checkCodeBoxNear(newX,newY)
     this.gameLogic.checkTerminalNear(newX,newY)
+    const exit = this.gameLogic.checkExitNear(newX,newY)
+    console.log(exit);
   
     // Verificar si no hay colisión con las paredes
     if (!this.gameLogic.checkWallCollision(newX, newY)) {
