@@ -4,6 +4,7 @@ import { TimerService } from '../../../services/timer.service';
 import { Codebox } from '../../codebox/interface/codebox';
 import { CodeboxService } from '../../codebox/service/codebox.service';
 import { TerminalIndicatorStateService } from '../../../services/terminal-indicator-state.service';
+import { LevelService } from '../../../services/level.service';
 
 @Component({
   selector: 'app-player-component',
@@ -29,7 +30,8 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
     private terminalIndicatorStateService : TerminalIndicatorStateService,
     private gameLogic: GameLogicServiceService,
     private timerService: TimerService,
-    private codeboxService: CodeboxService
+    private codeboxService: CodeboxService,
+    private levelService: LevelService
   ) {}
 
   ngOnInit() {
@@ -119,6 +121,14 @@ export class PlayerComponentComponent implements OnInit, OnDestroy {
             if(counter === 0){
               this.terminalIndicatorStateService.setCompleted()
               this.gameLogic.setTrue()
+              this.levelService.getNextLevel().subscribe({
+                next:(levels) => {
+                  console.log("siguiente nivel desbloqueado", levels)
+                },
+                error:(err) => {
+                  console.error("error: ", err)
+                }
+              })
             }
 
             this.codebox = null; // Liberar el CodeBox del jugador

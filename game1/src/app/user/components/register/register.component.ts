@@ -17,8 +17,20 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
-      nombreusuario: ['', Validators.required],
-      contrasena: ['', [Validators.required, Validators.minLength(6)]]
+      nombreusuario: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z0-9]{8}$/),
+        ],
+      ],
+      contrasena: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z0-9]{8}$/),
+        ],
+      ],
     });
   }
 

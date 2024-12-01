@@ -30,7 +30,8 @@ export class GameComponentComponent implements OnInit {
     public terminalS: TerminalService,
     public bridgeS: BridgeService,
     public gameLogic: GameLogicServiceService,
-    public wallsServ: WallsService
+    public wallsServ: WallsService,
+    
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +39,7 @@ export class GameComponentComponent implements OnInit {
 
     this.gameLogic.estadoVID$.subscribe((estado) => {
       this.showVideo = estado; // Si el estado es true, mostramos el video
+      
     });
   
     // Cargar terminales

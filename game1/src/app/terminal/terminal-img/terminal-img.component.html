@@ -28,7 +28,7 @@
 </div>
 
 <!-- Mensaje de la terminal cercana -->
-<div *ngIf="nearTerminalId !== null" class="absolute bg-black bg-opacity-70 text-white px-2 py-1 rounded transform -translate-x-1/2"
+<div *ngIf="nearTerminalId !== null" class="absolute z-[999] bg-black bg-opacity-70 text-white px-2 py-1 rounded transform -translate-x-1/2 w-[230px] text-wrap"
   [ngStyle]="nearTerminalPosition ? { left: nearTerminalPosition.x + 'px', top: (nearTerminalPosition.y - 30) + 'px' } : {}">
-  <p>{{ nearTerminalMessage }}</p>
+  <p class="text-[22px] z-[999] ">{{ nearTerminalMessage }}</p>
 </div>

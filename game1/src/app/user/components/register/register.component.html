@@ -21,6 +21,9 @@
   </div>
   <div>
 
+
+
+
     
     <div class="flex flex-col border-[8px] items-center w-[500px] h-[600px] justify-around  border-blue-400 rounded-3xl bg-gray-100  shadow-2xl">
       <h2 class="text-[45px] ">Registro</h2>
@@ -35,6 +38,10 @@
         type="text"
         required
         />
+        <small class="text-gray-500">8 caracteres (A-Z, 0-9) "ñ" invalida</small>
+        <div *ngIf="registerForm.get('nombreusuario')?.invalid && registerForm.get('nombreusuario')?.touched" class="text-red-500">
+          Nombre de usuario inválido
+        </div>
       </div>
       <div class="select-none no-underline w-5/6 flex flex-col text-[25px] items-center text-center">
         <label for="contrasena">Contraseña:</label>
@@ -45,6 +52,10 @@
         type="password"
         required
         />
+        <small class="text-gray-500">8 caracteres (A-Z, 0-9)</small>
+          <div *ngIf="registerForm.get('contrasena')?.invalid && registerForm.get('contrasena')?.touched" class="text-red-500">
+            Contraseña inválida
+          </div>
       </div>
       <div class="w-full">
         <button class="cursor-pointer shadow-2xl border-2 border-blue-900 text-white text-[35px] w-full h-[60px] rounded-2xl bg-green-700" type="submit" [disabled]="registerForm.invalid">Registrarse</button>

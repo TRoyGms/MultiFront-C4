@@ -43,4 +43,17 @@ export class LevelService implements OnInit{
     const url = `${this.Url}nivel/niveles_usuario/${idusuario}`
     return this.http.get<Level[]>(url, {headers} )
   }
+
+  getNextLevel():Observable<Level[]>{
+    const idusuario=localStorage.getItem("idusuario")
+    const token= localStorage.getItem("token")
+    const nextLevelURL = `${this.Url}progreso/progreso_siguiente/${idusuario}`
+
+    const headers = new HttpHeaders({
+      'Authorization': `${token}`,
+      'Content-Type': 'application/json'
+    })
+    return this.http.post<Level[]>(nextLevelURL,{}, {headers} )
+
+  }
 }
