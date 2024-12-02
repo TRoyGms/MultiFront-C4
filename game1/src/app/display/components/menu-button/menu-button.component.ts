@@ -43,7 +43,16 @@ export class MenuButtonComponent {
 
   onExitConfirmed(isConfirmed: boolean) {
     if (isConfirmed) {
-      this.router.navigate(['/select_lvl']); // Redirige a la ruta /select_lvl
+      setTimeout(() => {
+        this.router.navigate(['/select_lvl']);
+        setTimeout(() => {
+          console.log("llamando aqui");
+          window.location.reload();
+          window.location.reload();
+          this.router.navigate(['/select_lvl']);
+
+        }, 200);
+      }, 100); // Redirige a la ruta /select_lvl
     }
     this.isExitConfirmOpen = false; // Cierra el modal de confirmación
     this.timerService.resumeTimer();

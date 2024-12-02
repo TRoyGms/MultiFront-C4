@@ -8,6 +8,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Terminal } from '../app/terminal/interface/terminal';
 import { TerminalService } from './terminal.service';
 import { BridgeService } from './bridge.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,8 @@ export class GameLogicServiceService {
     private wallService: WallsService,
     private codeboxService: CodeboxService,
     private terminalService: TerminalService ,
-    private bridgeService:BridgeService // Inject the terminal service
+    private bridgeService:BridgeService,
+    private router:Router // Inject the terminal service
   ) {}
 
   terminalesTotales: number = 0
@@ -143,22 +145,28 @@ export class GameLogicServiceService {
     console.log('Estado actualizado a true');
   }
 
-  setFalse() {
-    this.estadoSubject.next(false); // Emite un valor nuevo para 'estado'
-    console.log('Estado actualizado a false');
-  }
-
+  
 
   checkExitNear(x: number, y: number): string | null {
+    console.log("llamando salida");
+    
     if (this.estadoSubject) {
       const exit = this.exit; // Asegúrate de que 'this.exit' es un objeto, no un arreglo
     if (
         x + 70 >= exit.ladox1 && x < exit.ladox2 &&
-        y + 110 >= exit.ladoy1 && y < exit.ladoy2
+        y >= exit.ladoy1 && y-80 < exit.ladoy2
     ) {
         console.log("Salida encontrada");
         this.estadoVideo.next(true);  // Emitimos true cuando estamos cerca de la salida
-
+        setTimeout(() => {
+          this.router.navigate(['/select_lvl']);
+          setTimeout(() => {
+            console.log("llamando aqui");
+            window.location.reload();
+            window.location.reload();
+            this.router.navigate(['/select_lvl']);
+          }, 200);
+        }, 12000);
         return "exit"; // Devuelve un identificador si lo necesitas
     } else {
       this.estadoVideo.next(false);  // Emitimos false cuando no estamos cerca

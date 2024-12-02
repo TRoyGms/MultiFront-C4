@@ -1,6 +1,6 @@
 <app-camera-component class="flex select-none no-underline">
   <!-- Header Container -->
-  <header-container class="flex-shrink-0"></header-container>
+  <header-container  class="flex-shrink-0"></header-container>
   <div class="flex min-w-fit">
     <div 
     class="absolute w-[1200px] h-[860px]"
@@ -14,7 +14,7 @@
   <app-exit></app-exit>
 </div>
 
-<div *ngIf="showVideo" class="absolute top-0 left-0 w-full h-full bg-black z-50">
+<div *ngIf="showVideo" class="absolute top-0 left-0 w-[1900px] h-full bg-black z-50">
   <video autoplay loop muted playsinline class="w-full h-full object-cover">
     <source [src]="endAn" type="video/mp4" />
     Tu navegador no soporta videos :c

@@ -15,7 +15,7 @@ export class LvlSelectorComponent implements OnInit{
   constructor(private router: Router, private lvlService: LevelService){}
 
   ngOnInit(): void {
-      this.loadLvls()
+    this.loadLvls()
   }
 
   private loadLvls():void {
