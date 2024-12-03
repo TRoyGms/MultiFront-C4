@@ -45,7 +45,7 @@ export class GameComponentComponent implements OnInit {
     // Cargar terminales
     this.terminalS.getTerminalsByLvl(this.nivel).subscribe(
       (response: Terminal[]) => {
-        console.log('Terminales cargadas:', response);
+        
         this.terminales = response; // No necesitamos acceder a 'data' si la respuesta es directamente un arreglo
       },
       (error) => console.error('Error al cargar terminales:', error)
@@ -54,7 +54,7 @@ export class GameComponentComponent implements OnInit {
     //cargar paredes
     this.wallsServ.getWalls().subscribe({
       next:(data ) => {
-        console.log("paredes: ",data)
+        
         this.walls=data
       }
     })

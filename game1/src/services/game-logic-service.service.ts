@@ -55,7 +55,6 @@ export class GameLogicServiceService {
   loadParedes(): void {
     this.wallService.getWalls().subscribe({
       next: (paredes: Pared[]) => {
-        console.log('paredes recibidos:', paredes);
         this.walls = paredes;
       },
       error: (err) => {
@@ -65,10 +64,8 @@ export class GameLogicServiceService {
   }
 
   loadPuente(): void {
-    console.log("Cargando puentes...");
     this.bridgeService.getBridgesByLvl().subscribe({
       next: (puentes: Puente[]) => {
-        console.log('Puentes recibidos:', puentes);
         this.bridgeAux = puentes;
       },
       error: (err) => {
@@ -79,9 +76,7 @@ export class GameLogicServiceService {
   
   loadCodebox(nivel: number): void {
     this.codeboxService.getCodeboxesByLevel(nivel).subscribe({
-      next: (codeboxes: Codebox[]) => {
-        console.log('Codeboxes recibidos:', codeboxes);
-       
+      next: (codeboxes: Codebox[]) => {    
         this.codeboxes = codeboxes; 
         this.codeboxesDup = [...codeboxes]; 
       },
@@ -94,7 +89,6 @@ export class GameLogicServiceService {
   loadTerminal(nivel: number): void {
     this.terminalService.getTerminalsByLvl(nivel).subscribe({
       next: (terminals: Terminal[]) => {
-        console.log('Terminales cargadas:', terminals);
         this.terminales = terminals;
         this.terminalesTotales = this.terminales.length
         sessionStorage.setItem("terminalesTotales", this.terminalesTotales.toString())
@@ -108,13 +102,11 @@ export class GameLogicServiceService {
 
   // Check proximity to codeboxes
   checkCodeBoxNear(x: number, y: number): string | null {
-    //console.log("checar codeboxes", this.codeboxes);
     const codebox = this.codeboxes.find(codebox => (
       x + 70 >= codebox.ladox1 && x < codebox.ladox2 &&
       y + 110 >= codebox.ladoy1 && y < codebox.ladoy2
     ));
     if (codebox) {
-      //console.log("Codebox encontrado", codebox._id);
       this.codeboxNearSource.next(codebox._id);
       return codebox._id;
     } else {
@@ -125,13 +117,11 @@ export class GameLogicServiceService {
 
   // Check proximity to terminals
   checkTerminalNear(x: number, y: number): string | null {
-    //console.log("checar terminales", this.terminales);
     const terminal = this.terminales.find(terminal => (
       x +70 >= terminal.ladox1 && x < terminal.ladox2 &&
       y + 110 >= terminal.ladoy1 && y < terminal.ladoy2
     ));
     if (terminal) {
-     // console.log("Terminal encontrado", terminal._id);
       this.terminalNearSource.next(terminal._id);  // Notify about the terminal being near
       return terminal._id;
     } else {
@@ -213,7 +203,6 @@ checkExitNdear(x: number, y: number): string | null {
   removeTerminal(id: string): void {
     const originalLength = this.terminales.length;
     this.terminales = this.terminales.filter(terminal => terminal._id !== id);
-    console.log("terminales", this.terminales);
 
     if (this.terminales.length < originalLength) {
       console.log(`Terminal con ID ${id} ha sido eliminado.`);
@@ -235,7 +224,6 @@ checkExitNdear(x: number, y: number): string | null {
       try {
         const result = await this.terminalService.buscar(terminalId, codeboxId).toPromise();
         console.log(result);
-        console.log("terminal",terminal);
         const bridge = this.bridgeAux.find(b=>b._id === terminal.idpuente)
         console.log("puente encontrado",bridge);
         if (bridge) {
@@ -298,10 +286,8 @@ checkExitNdear(x: number, y: number): string | null {
 
   checkCameraTransition(x: number, y: number) {
     if (this.isAtBridgeEntry(x, y) || this.isAtSecondCameraArea(x, y)) {
-      console.log("segunda cámara");
       this.currentCamera = 2;
     } else {
-      console.log('primera cámara');
       this.currentCamera = 1;
     }
   }

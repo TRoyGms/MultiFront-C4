@@ -23,7 +23,6 @@ export class ExitComponent implements OnInit{
     // Suscribirse al estado del servicio para recibir cambios
     this.estadoSubscription = this.gameLogic.estado$.subscribe((nuevoEstado) => {
       this.estado = nuevoEstado; // Actualiza el valor de 'estado' en el componente hijo
-      console.log('Estado recibido en el componente hijo:', this.estado);
     });
   }
 

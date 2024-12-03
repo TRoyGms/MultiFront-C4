@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
 
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginForm: FormGroup;
 
   constructor(
@@ -22,6 +22,11 @@ export class LoginComponent {
     });
   }
 
+  ngOnInit(): void {
+      localStorage.clear()
+      sessionStorage.clear()
+  }
+
   register():void{
     this.router.navigate(["registro"]) 
   }
@@ -32,14 +37,12 @@ export class LoginComponent {
         response => {
 
           const _idusuario = response.body.idusuario
-          console.log('Usuario inició sesión con éxito:', ", id: ", _idusuario, response);
           
           if(_idusuario){
             localStorage.setItem("idusuario", _idusuario)
           }
 
           const _headers = response.headers
-          console.log('cabeceras: ',_headers)
 
           const token = _headers.get('authorization')
 

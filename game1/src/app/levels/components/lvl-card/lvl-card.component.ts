@@ -17,7 +17,6 @@ export class LvlCardComponent {
 
   toLvl():void {
     const nivel = this.level.idnivel.toString()
-    console.log(" idnivel: " ,nivel)
     localStorage.setItem("idnivel", nivel)
     this.router.navigate(['game'])
     //this.selectedLvl.emit(this.level.idnivel)

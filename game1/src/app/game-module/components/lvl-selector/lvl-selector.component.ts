@@ -22,8 +22,7 @@ export class LvlSelectorComponent implements OnInit{
     this.lvlService.getLvls().subscribe({
       next: (data) => {
         //this.levels=data
-      this.levels = data.filter((level) => level.desbloqueado === true),
-      console.log("niveles en local: ",this.levels)},
+      this.levels = data.filter((level) => level.desbloqueado === true)},
 
       error: (_error) => (console.error("error al cargar niveles: ",_error))
     })

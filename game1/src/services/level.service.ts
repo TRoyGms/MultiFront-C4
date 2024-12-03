@@ -22,9 +22,6 @@ export class LevelService implements OnInit{
     const idusuario=localStorage.getItem("idusuario")
     const token= localStorage.getItem("token")
 
-    console.log("id: ",idusuario)
-    console.log("token: ",token)
-
     if(!idusuario){
       this.router.navigate(['login'])
       throw new Error('Usuario no autenticado')

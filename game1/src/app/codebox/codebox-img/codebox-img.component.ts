@@ -44,7 +44,6 @@ export class CodeboxComponent implements OnInit, OnDestroy {
         this.nearCodeboxPosition = null;
       }
     });
-    console.log("CODEBOXES",this.codeboxes);
 
 
   }

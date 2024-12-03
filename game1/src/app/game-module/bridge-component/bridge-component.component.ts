@@ -14,7 +14,7 @@ export class BridgeComponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("llamando aqui");
+    
       this.gameLogic.loadPuente();
   }
 

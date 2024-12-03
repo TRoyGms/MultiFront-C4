@@ -16,7 +16,6 @@ export class BridgeService {
   getBridgesByLvl(): Observable<Puente[]> {
     const token = localStorage.getItem('token');
     const levelid = localStorage.getItem('idnivel')
-    console.log(levelid);
     
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
